@@ -1,0 +1,28 @@
+<h1 class="mb-4">Questions</h1>
+
+<%= link_to 'New question', new_question_path, class: 'btn btn-primary btn-lg' %>
+<% @questions.each do |question| %>
+  <article class="card mt-3">
+    <div class="card-body">
+      <h4><%= question.title %></h4>
+
+      <section class="card-text">
+        <time datetime="<%= question.created_at_format %>">
+          <small><%= question.created_at_format %></small>
+        </time>
+
+        <p class="my-2">
+          <%= question.body %>
+        </p>
+      </section>
+
+<div class="d-flex nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <%= link_to 'Show', question_path(question), class: 'btn btn-outline-primary m-1' %>
+      <%= link_to 'Edit', edit_question_path(question), class: 'btn btn-outline-secondary m-1' %>
+      <%= button_to 'Destroy', question_path(question), class: 'btn btn-outline-danger m-1',
+        data: { confirm: 'Are you sure?' }, method: :delete %>
+        </div>
+    </div>
+  </article>
+
+<% end %>

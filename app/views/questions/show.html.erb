@@ -1,0 +1,14 @@
+<h1 class="mb-4"><%= @question.title %></h1>
+
+<time datetime="<%= @question.created_at_format %>">
+  <%= @question.created_at_format %>
+</time>
+
+<p class="lead my-3">
+  <%= @question.body %>
+</p>
+
+<%= link_to 'Show', question_path(@question), class: 'btn btn-primary' %>
+<%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-secondary' %>
+<%= button_to 'Destroy', question_path(@question), class: 'btn btn-danger',
+  data: { confirm: 'Are you sure?' }, method: :delete %>
