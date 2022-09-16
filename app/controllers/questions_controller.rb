@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = @question.answers.build
-    @answers = Answer.order created_at: :desc
+    @answers = @question.answers.order created_at: :desc
   end
 
   def destroy
@@ -49,6 +49,6 @@ class QuestionsController < ApplicationController
   end
 
   def set_question
-    @question = Question.find_by id: params[:id]
+    @question = Question.find_by(id: params[:id])
   end
 end
