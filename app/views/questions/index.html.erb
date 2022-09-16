@@ -4,6 +4,9 @@
 <h1 class="mb-4">Questions</h1>
 
 <%= link_to 'New question', new_question_path, class: 'btn btn-primary btn-lg' %>
+
+<%= paginate @questions, window: 2 %>
+
 <% @questions.each do |question| %>
   <article class="card mt-3">
     <div class="card-body">
@@ -15,7 +18,7 @@
         </time>
 
         <p class="my-2">
-          <%= question.body %>
+          <%= truncate (strip_tags question.body), length: 150 %>
         </p>
       </section>
 
@@ -29,3 +32,5 @@
   </article>
 
 <% end %>
+
+<%= paginate @questions, window: 2 %>
