@@ -11,6 +11,7 @@
             <li> <%= current_user.nickname %> </li>
           <% else %>
             <li><%= nav_tab 'Sign Up', new_user_path, class: 'nav-link px-2', current_page: current_page %></li>
+            <li><%= nav_tab 'Log in', new_session_path, class: 'nav-link px-2', current_page: current_page %></li>
           <% end %>
         </ul>
       </nav>
