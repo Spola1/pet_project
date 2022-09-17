@@ -6,6 +6,13 @@
           <li><%= nav_tab 'Home', root_path, class: 'nav-link px-2', current_page: current_page %></li>
           <li><%= nav_tab 'Questions', questions_path, class: 'nav-link px-2', current_page: current_page %></li>
         </ul>
+        <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+          <% if user_sign_in? %>
+            <li> <%= current_user.nickname %> </li>
+          <% else %>
+            <li><%= nav_tab 'Sign Up', new_user_path, class: 'nav-link px-2', current_page: current_page %></li>
+          <% end %>
+        </ul>
       </nav>
     </div>
   </header>

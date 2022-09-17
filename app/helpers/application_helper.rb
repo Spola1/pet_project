@@ -22,7 +22,7 @@ module ApplicationHelper
   end
 
   def full_title(page_title = "")
-    base_title = "AskIt"
+    base_title = "Pet project"
     if page_title.present?
       "#{page_title} | #{base_title}"
     else
