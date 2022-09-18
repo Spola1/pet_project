@@ -1,21 +1,25 @@
 class SessionsController < ApplicationController
-  def new
+  before_action :require_no_authentication, only: %i[new create]
+  before_action :require_authentication, only: :destroy
 
+  def new
   end
 
   def create
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
-      session[:user_id] = user.id
-      flash[:success] = "Welcome back, dear #{user.nickname}"
+      sign_in user
+      flash[:success] = "Welcome back, dear #{current_user.nickname.capitalize}!"
       redirect_to root_path
     else
-      flash[:warning] = "Incorrect email or password"
-      redirect_to new_session_path
+      flash.now[:warning] = "Incorrect email or password"
+      render :new
     end
   end
 
   def destroy
-
+    session.delete(:user_id)
+    flash[:success] = "See you later!"
+    redirect_to root_path
   end
 end
