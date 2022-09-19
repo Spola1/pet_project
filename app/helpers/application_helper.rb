@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def nav_tab(title, url, options = {})
     current_page = options.delete :current_page
 
@@ -28,5 +30,9 @@ module ApplicationHelper
     else
       base_title
     end
+  end
+
+  def pagination(obj)
+    raw(pagy_bootstrap_nav(obj)) if obj.count > 20
   end
 end

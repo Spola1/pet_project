@@ -16,6 +16,7 @@ gem "kaminari", "~> 1.2"
 gem "bcrypt"
 gem "draper"
 gem "valid_email2"
+gem "pagy"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
