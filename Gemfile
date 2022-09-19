@@ -17,6 +17,9 @@ gem "bcrypt"
 gem "draper"
 gem "valid_email2"
 gem "pagy"
+gem "rubyzip"
+gem "caxlsx"
+gem "caxlsx_rails"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
