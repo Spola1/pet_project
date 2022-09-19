@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   attr_accessor :old_password
 
+  has_many :questions
+  has_many :answers
+
   has_secure_password validations: false
 
   validate :password_presence

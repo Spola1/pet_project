@@ -2,12 +2,12 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show destroy edit update]
 
   def index
-    @questions = Question.order(created_at: :desc).page(params[:page])
+    @pagy, @questions = pagy Question.order(created_at: :desc)
   end
 
   def show
     @answer = @question.answers.build
-    @answers = @question.answers.order(created_at: :desc).page(params[:page])
+    @pagy, @answers = pagy @question.answers.order(created_at: :desc)
   end
 
   def destroy
@@ -29,11 +29,11 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new
+    @question = current_user.questions.build
   end
 
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.build(question_params)
     if @question.save
       flash[:success] = "Question created!"
       redirect_to questions_path
