@@ -1,19 +1,21 @@
-<article class="mb-3 card" id="answer-<%= answer.id %>">
-  <div class="card-body">
-    <section class="card-text">
-      <small><time datetime="<%= answer.created_at_format %>">
-        <%= answer.created_at_format %>
-      </time></small>
+<article class="mt-3 card" id="answer-<%= answer.id %>">
+  <selection class="card-header">
+    <%= answer.user.nickname %>
+  </selection>
 
-      <div class="mt-2 mb-3">
-        <%= sanitize answer.body %>
-      </div>
-    </section>
+  <section class="card-text">
+    <small><time datetime="<%= answer.created_at_format %>">
+      <%= answer.created_at_format %>
+    </time></small>
 
-    <div class="d-flex nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-      <%= link_to 'Edit', edit_question_answer_path(question, answer), class: 'btn btn-outline-secondary m-1' %>
-      <%= button_to 'Delete', question_answer_path(question, answer), class: 'btn btn-outline-danger m-1',
-      data: { confirm: "Are you sure?"}, method: :delete %>
+    <div class="my-2">
+      <%= sanitize answer.body %>
     </div>
+  </section>
+
+  <div class="d-flex nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+    <%= link_to 'Edit', edit_question_answer_path(question, answer), class: 'btn btn-outline-secondary m-1' %>
+    <%= button_to 'Delete', question_answer_path(question, answer), class: 'btn btn-outline-danger m-1',
+    data: { confirm: "Are you sure?"}, method: :delete %>
   </div>
 </article>

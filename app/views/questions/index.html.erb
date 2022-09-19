@@ -11,6 +11,10 @@
 
 <% @questions.each do |question| %>
   <article class="card mt-3">
+    <selection class="card-header">
+      <%= question.user.nickname %>
+    </selection>
+
     <div class="card-body">
       <h4><%= question.title %></h4>
 
