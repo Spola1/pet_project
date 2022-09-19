@@ -20,6 +20,8 @@ gem "pagy"
 gem "rubyzip"
 gem "caxlsx"
 gem "caxlsx_rails"
+gem "rubyXL"
+gem "activerecord-import"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
