@@ -12,6 +12,7 @@
 <% @questions.each do |question| %>
   <article class="card mt-3">
     <selection class="card-header">
+      <%= image_tag question.user.gravatar_url, class: 'rounded m-1' %>
       <%= question.user.nickname %>
     </selection>
 

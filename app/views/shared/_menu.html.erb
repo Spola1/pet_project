@@ -11,8 +11,12 @@
 
         <% if user_signed_in? %>
           <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><%= link_to (image_tag current_user.gravatar_url,
+              class: 'rounded m-1') %>
+            </li>
+            
             <li>
-              <%= nav_tab current_user.nickname, '/',
+              <%= nav_tab current_user.nickname, '/questions',
                 class: 'nav-link px-2', current_page: current_page %>
             </li>
 

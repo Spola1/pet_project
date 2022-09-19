@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  include Gravtastic
+
+  gravtastic(secure: true, filetype: :png, size: 40, default: 'retro')
+
   attr_accessor :old_password
 
   has_many :questions
