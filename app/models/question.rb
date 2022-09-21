@@ -9,15 +9,23 @@ class Question < ApplicationRecord
   validates :title, presence: true, length: { minimum: 5 }
   validates :body, presence: true, length: { minimum: 5 }
 
-  scope :all_by_tags, ->(tag_ids) do
-    questions = includes(:user)
-    if tag_ids
-      questions = questions.includes(question_tags: :tag).joins(:tags).where(tags: tag_ids)
-    else
-      questions = questions.includes(:question_tags, :tags)
+  after_create do
+    question = Question.find_by(id: self.id)
+    tags = self.body.scan(/#\w+/)
+    tags.uniq.map do |tag|
+      tag = Tag.find_or_create_by(title: tag.downcase.delete('#'))
+      question.tags << tag
     end
+  end
 
-    questions.order(created_at: :desc)
+  before_update do
+    question = Question.find_by(id: self.id)
+    question.tags.clear
+    tags = self.body.scan(/#\w+/)
+    tags.uniq.map do |tag|
+      tag = Tag.find_or_create_by(title: tag.downcase.delete('#'))
+      question.tags << tag
+    end
   end
 
   def created_at_format
