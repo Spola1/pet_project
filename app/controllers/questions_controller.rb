@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show destroy edit update]
 
   def index #n+1 includes(:user)
-    @pagy, @questions = pagy Question.includes(:user).order(created_at: :desc)
+    @pagy, @questions = pagy Question.all_by_tags(params[:tag_ids])
   end
 
   def show
@@ -45,7 +45,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, tag_ids:[])
   end
 
   def set_question

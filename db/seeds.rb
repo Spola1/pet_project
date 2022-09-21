@@ -5,3 +5,8 @@ user = User.create(email:'alexeihowar50@gmail.com', name:'Alex', nickname:'spola
   body = Faker::Lorem.paragraph(sentence_count: 2, supplemental: true, random_sentences_to_add: 4)
   Question.create(title: title, body: body, user_id: user.id)
 end
+
+30.times do
+  title = Faker::Hipster.word
+  Tag.create title: title
+end
