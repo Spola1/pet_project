@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show destroy edit update]
 
   def index #n+1 includes(:user)
-    @pagy, @questions = pagy Question.includes(:user).order(created_at: :desc)
+    @pagy, @questions = pagy Question.includes(:user).includes(:tags).order(created_at: :desc)
   end
 
   def show
