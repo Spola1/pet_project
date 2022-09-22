@@ -1,4 +1,9 @@
 <% currently_at 'Home' %>
 <% provide :page_title %>
 
-<h1>Home page</h1>
+<div class="container">
+  <div class="row col-12 col-lg-auto">
+    <div class="col"><%= link_to 'Questions', questions_path,
+      class: 'btn btn-outline-info btn-lg p-5 btn-font-size nav-link px-2 m-2' %></div>
+  </div>
+</div>
