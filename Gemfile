@@ -9,7 +9,6 @@ gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
 gem "jsbundling-rails"
 gem "cssbundling-rails"
-gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "kaminari", "~> 1.2"
@@ -23,7 +22,7 @@ gem "caxlsx_rails"
 gem "rubyXL"
 gem "activerecord-import"
 gem "gravtastic"
-gem "jbuilder"
+gem "blueprinter"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

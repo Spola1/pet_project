@@ -74,6 +74,7 @@ GEM
       tzinfo (~> 2.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
+    blueprinter (0.25.3)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -113,9 +114,6 @@ GEM
     io-console (0.5.11)
     irb (1.4.1)
       reline (>= 0.3.0)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
     kaminari (1.2.2)
@@ -238,6 +236,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-import
   bcrypt
+  blueprinter
   bootsnap
   caxlsx
   caxlsx_rails
@@ -246,7 +245,6 @@ DEPENDENCIES
   draper
   faker (~> 2)
   gravtastic
-  jbuilder
   jsbundling-rails
   kaminari (~> 1.2)
   pagy
