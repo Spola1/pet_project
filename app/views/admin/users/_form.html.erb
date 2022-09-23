@@ -1,6 +1,6 @@
-<%= render 'shared/errors', object: @user %>
+<%= render 'shared/errors', object: user %>
 
-<%= form_with model: @user do |f| %>
+<%= form_with model: [:admin, user] do |f| %>
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= f.label :email %>
@@ -33,6 +33,16 @@
 
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
+      <%= f.label :role %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.select :role, user_roles, {}, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
       <%= f.label :password %>
     </div>
 
@@ -51,18 +61,6 @@
     </div>
   </div>
 
-  <% unless @user.new_record? %>
-    <div class="mb-3 row">
-      <div class="col-sm-2 col-form-label">
-        <%= f.label :old_password %>
-      </div>
-
-      <div class="col-sm-10">
-        <%= f.text_field :old_password, class: 'form-control' %>
-      </div>
-    </div>
-  <% end %>
-
-  <%= f.submit (@user.new_record? ? "Register!" : "Save"),
+  <%= f.submit (user.new_record? ? "Register!" : "Save"),
     class: 'btn btn-primary btn-lg' %>
 <% end %>
