@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   include QuestionsAnswers
   before_action :set_question, only: %i[show destroy edit update]
 
-  def index #n+1 includes(:user)
+  def index #n+1 includes(:user) includes(:tags)
     @pagy, @questions = pagy Question.includes(:user).includes(:tags).order(created_at: :desc)
   end
 
