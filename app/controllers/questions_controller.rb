@@ -1,9 +1,9 @@
 class QuestionsController < ApplicationController
   include QuestionsAnswers
-  before_action :set_question, only: %i[show destroy edit update]
+  before_action :set_question, only: [:show, :destroy, :edit, :update]
 
-  def index #n+1 includes(:user) includes(:tags)
-    @pagy, @questions = pagy Question.includes(:user).includes(:tags).order(created_at: :desc)
+  def index # n+1 includes(:user) includes(:tags)
+    @pagy, @questions = pagy(Question.includes(:user).includes(:tags).order(created_at: :desc))
   end
 
   def show
@@ -12,19 +12,18 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    flash[:success] = "Question deleted!"
-    redirect_to questions_path
+    flash[:success] = 'Question deleted!'
+    redirect_to(questions_path)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @question.update(question_params)
-      flash[:success] = "Question updated!"
-      redirect_to questions_path
+      flash[:success] = 'Question updated!'
+      redirect_to(questions_path)
     else
-      render :edit
+      render(:edit)
     end
   end
 
@@ -35,10 +34,10 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.build(question_params)
     if @question.save
-      flash[:success] = "Question created!"
-      redirect_to questions_path
+      flash[:success] = 'Question created!'
+      redirect_to(questions_path)
     else
-      render :new
+      render(:new)
     end
   end
 

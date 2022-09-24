@@ -10,8 +10,8 @@ class Question < ApplicationRecord
   validates :body, presence: true, length: { minimum: 5 }
 
   after_create do
-    question = Question.find_by(id: self.id)
-    tags = self.body.scan(/#\w+/)
+    question = Question.find_by(id: id)
+    tags = body.scan(/#\w+/)
     tags.uniq.map do |tag|
       tag = Tag.find_or_create_by(title: tag.downcase.delete('#'))
       question.tags << tag
@@ -19,9 +19,9 @@ class Question < ApplicationRecord
   end
 
   before_update do
-    question = Question.find_by(id: self.id)
+    question = Question.find_by(id: id)
     question.tags.clear
-    tags = self.body.scan(/#\w+/)
+    tags = body.scan(/#\w+/)
     tags.uniq.map do |tag|
       tag = Tag.find_or_create_by(title: tag.downcase.delete('#'))
       question.tags << tag

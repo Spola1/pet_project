@@ -5,6 +5,6 @@ class Comment < ApplicationRecord
   validates :body, presence: true
 
   def for?(commentable)
-    commentable == self.commentable    
+    commentable == self.commentable
   end
 end
