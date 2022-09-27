@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   include QuestionsAnswers
-  before_action :require_authentication, only: %i[destroy update edit]
-  before_action :set_question, only: %i[show destroy edit update]
+  before_action :require_authentication, only: [:destroy, :update, :edit]
+  before_action :set_question, only: [:show, :destroy, :edit, :update]
   before_action :authorize_question!
   after_action :verify_authorized
 
