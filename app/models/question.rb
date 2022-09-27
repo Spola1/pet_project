@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
   include Commentable
+  include Ownership
 
   has_many :answers, dependent: :destroy
   belongs_to :user

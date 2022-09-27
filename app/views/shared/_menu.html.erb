@@ -13,6 +13,13 @@
               class: 'rounded m-1') %>
             </li>
 
+            <% if policy([:admin, :user]).index? %>
+              <li>
+                <%= nav_tab 'Admin panel', admin_users_path,
+                  class: 'nav-link px-2', current_page: current_page %>
+              </li>
+            <% end %>
+
             <li>
               <%= nav_tab current_user.nickname, '/questions',
                 class: 'nav-link px-2', current_page: current_page %>

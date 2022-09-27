@@ -3,7 +3,9 @@
 
 <h1 class="mb-4">Questions</h1>
 
-<%= link_to 'New question', new_question_path, class: 'btn btn-primary btn-lg' %>
+<% if policy(:question).new? %>
+  <%= link_to 'New question', new_question_path, class: 'btn btn-primary btn-lg' %>
+<% end %>
 
 <div class="mt-3">
   <%= pagination @pagy %>

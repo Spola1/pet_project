@@ -1,5 +1,6 @@
 class Answer < ApplicationRecord
   include Commentable
+  include Ownership
 
   belongs_to :question
   belongs_to :user

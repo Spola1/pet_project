@@ -23,6 +23,7 @@ gem 'rubyXL'
 gem 'activerecord-import'
 gem 'gravtastic'
 gem 'blueprinter'
+gem 'pundit', '~> 2.1'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,6 +1,9 @@
 class QuestionsController < ApplicationController
   include QuestionsAnswers
+  before_action :require_authentication, only: [:destroy, :update, :edit]
   before_action :set_question, only: [:show, :destroy, :edit, :update]
+  before_action :authorize_question!
+  after_action :verify_authorized
 
   def index # n+1 includes(:user) includes(:tags)
     @pagy, @questions = pagy(Question.includes(:user).includes(:tags).order(created_at: :desc))
@@ -49,5 +52,9 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = Question.find_by(id: params[:id])
+  end
+
+  def authorize_question!
+    authorize(@question || Question)
   end
 end

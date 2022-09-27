@@ -4,6 +4,8 @@ class AnswersController < ApplicationController
 
   before_action :set_question
   before_action :set_answer, only: [:destroy, :edit, :update]
+  before_action :authorize_answer!
+  after_action :verify_authorized
 
   def create
     @answer = @question.answers.build(answer_params)
@@ -46,5 +48,9 @@ class AnswersController < ApplicationController
 
   def set_answer
     @answer = @question.answers.find(params[:id])
+  end
+
+  def authorize_answer!
+    authorize(@answer || Answer)
   end
 end
