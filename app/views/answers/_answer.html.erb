@@ -13,9 +13,13 @@
   </section>
 
   <div class="d-flex nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-    <%= link_to 'Edit', edit_question_answer_path(question, answer), class: 'btn btn-outline-secondary m-1' %>
-    <%= button_to 'Delete', question_answer_path(question, answer), class: 'btn btn-outline-danger m-1',
-    data: { confirm: "Are you sure?"}, method: :delete %>
+    <% if policy(answer).edit? %>
+      <%= link_to 'Edit', edit_question_answer_path(question, answer), class: 'btn btn-outline-secondary m-1' %>
+    <% end %>
+    <% if policy(answer).destroy? %>
+      <%= button_to 'Delete', question_answer_path(question, answer), class: 'btn btn-outline-danger m-1',
+      data: { confirm: "Are you sure?"}, method: :delete %>
+    <% end %>
   </div>
 </article>
 
