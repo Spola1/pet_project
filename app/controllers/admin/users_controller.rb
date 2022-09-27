@@ -1,7 +1,9 @@
 module Admin
-  class UsersController < ApplicationController
+  class UsersController < BaseController
     before_action :require_authentication
     before_action :set_user, only: [:edit, :update, :destroy]
+    before_action :authorize_user!
+    after_action :verify_authorized
 
     def index
       respond_to do |format|
@@ -57,6 +59,10 @@ module Admin
 
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def authorize_user!
+      authorize(@user || User)
     end
 
     def user_params
