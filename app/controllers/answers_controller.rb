@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
 
   before_action :set_question
   before_action :set_answer, only: [:destroy, :edit, :update]
-  before_action :authorize_question!
+  before_action :authorize_answer!
   after_action :verify_authorized
 
   def create
