@@ -19,6 +19,14 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
 
+  def owner?(obj)
+    obj.user == self
+  end
+
+  def guest?
+    false
+  end
+
   private
 
   def correct_old_password
