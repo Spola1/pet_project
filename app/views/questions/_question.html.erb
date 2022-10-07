@@ -1,8 +1,8 @@
 <article class="card mt-3">
   <selection class="card-header d-flex">
     <div class="align-top">
-      <%= image_tag question.user.gravatar_url, class: 'rounded m-1' %>
-      <%= question.user.nickname %>
+      <%= link_to image_tag(question.user.gravatar_url, class: 'rounded m-1'), user_path(question.user) %>
+      <%= link_to question.user.nickname, user_path(question.user) %>
       <% if question.tags.present? %>
           | <%= links_for_tags(question.tags) %>
       <% end %>

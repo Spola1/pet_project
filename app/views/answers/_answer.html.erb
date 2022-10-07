@@ -1,7 +1,7 @@
 <article class="mt-3 card" id="answer-<%= answer.id %>">
   <selection class="card-header">
-    <%= image_tag answer.user.gravatar_url, class: 'rounded m-1' %>
-    <%= answer.user.nickname %>, <small><time datetime="<%= answer.created_at_format %>">
+    <%= link_to image_tag(answer.user.gravatar_url, class: 'rounded m-1'), user_path(answer.user) %>
+    <%= link_to answer.user.nickname, user_path(answer.user) %>, <small><time datetime="<%= answer.created_at_format %>">
       <%= answer.created_at_format %>
     </time></small>
   </selection>
