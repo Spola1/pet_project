@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_no_authentication, only: [:new, :create]
   before_action :require_authentication, only: [:edit, :update]
-  before_action :set_user, only: [:edit, :update, :show]
+  before_action :set_user, only: [:edit, :update, :show, :ban]
   before_action :authorize_user!
   after_action :verify_authorized
 
@@ -33,6 +33,12 @@ class UsersController < ApplicationController
     else
       render(:new)
     end
+  end
+
+  def ban
+    @user.toggle!(:banned)
+
+    redirect_to(admin_users_path)
   end
 
   private

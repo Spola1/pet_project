@@ -24,6 +24,7 @@ gem 'activerecord-import'
 gem 'gravtastic'
 gem 'blueprinter'
 gem 'pundit', '~> 2.1'
+gem 'letsrate'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]

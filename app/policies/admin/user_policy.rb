@@ -19,5 +19,9 @@ module Admin
     def destroy?
       user.admin_role?
     end
+
+    def ban?
+      user.admin_role?
+    end
   end
 end

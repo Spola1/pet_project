@@ -131,6 +131,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    letsrate (1.0.9)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -289,6 +290,7 @@ DEPENDENCIES
   gravtastic
   jsbundling-rails
   kaminari (~> 1.2)
+  letsrate
   pagy
   pry-rails
   puma (~> 5.0)
