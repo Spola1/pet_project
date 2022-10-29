@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def ban
     @user.toggle!(:banned)
 
-    redirect_to(admin_users_path)
+    redirect_to(user_path(@user))
   end
 
   private

@@ -10,10 +10,13 @@
     <p class="mt-3"><%= link_to 'Edit profile',
       edit_user_path(@user), class: 'btn btn-primary' %></p>
   <% end %>
-  <% if @user.banned == false %>
-  <%= button_to 'Ban', ban_user_path(@user), class: 'btn btn-danger', method: :put %>
-  <% else %>
-    <%= button_to 'Unban', ban_user_path(@user), class: 'btn btn-warning', method: :put %>
+
+  <% if current_user&.role == 'admin' %>
+    <% if @user.banned == false %>
+    <%= button_to 'Ban', ban_user_path(@user), class: 'btn btn-danger', method: :put %>
+    <% else %>
+      <%= button_to 'Unban', ban_user_path(@user), class: 'btn btn-warning', method: :put %>
+    <% end %>
   <% end %>
 
   <div class="row">
