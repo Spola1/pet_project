@@ -8,7 +8,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.guest?
+    user.present? && user.banned != true
   end
 
   def update?
