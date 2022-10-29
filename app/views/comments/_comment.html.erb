@@ -12,10 +12,9 @@
               <%= sanitize comment.body %>
             </p>
             <% if policy(comment).destroy? %>
-              <%= link_to 'Delete',
+              <%= button_to 'Delete',
                 polymorphic_path([comment.commentable, comment]),
-                class: 'btn btn-danger btn-sm',
-                data: {method: :delete, confirm: 'Are you sure?'} %>
+                class: 'btn btn-danger btn-sm', method: :delete %>
             <% end %>
           </div>
         </section>
