@@ -25,6 +25,7 @@ gem 'gravtastic'
 gem 'blueprinter'
 gem 'pundit', '~> 2.1'
 gem 'letsrate'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
