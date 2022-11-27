@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :todo_lists
   resource :session, only: %i[ new create destroy ]
 
   resources :users, except: %i[ index ]

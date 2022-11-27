@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Todo lists</h1>
+
+<div id="todo_lists">
+  <% @todo_lists.each do |todo_list| %>
+    <%= render todo_list %>
+    <p>
+      <%= link_to "Show this todo list", todo_list %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New todo list", new_todo_list_path %>
