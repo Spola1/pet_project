@@ -1,10 +1,22 @@
+<% provide :page_title, 'Todo Items' %>
+<% currently_at 'Todo Items' %>
+
 <p style="color: green"><%= notice %></p>
+<p>
+  <strong>Title:</strong>
+    <%= @todo_list.title %>
+  </p>
+<p>
+  <strong>Description:</strong>
+    <%= @todo_list.description %>
+  </p>
 
-<%= render @todo_list %>
+  <div id="todo_items_wrapper">
+    <%= render @todo_list.todo_items %>
+    <div id="form">
+      <%= render "todo_items/form" %>
+    </div>
+  </div>
 
-<div>
-  <%= link_to "Edit this todo list", edit_todo_list_path(@todo_list) %> |
-  <%= link_to "Back to todo lists", todo_lists_path %>
-
-  <%= button_to "Destroy this todo list", @todo_list, method: :delete %>
-</div>
+<%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
+<%= link_to 'Back', todo_lists_path %>

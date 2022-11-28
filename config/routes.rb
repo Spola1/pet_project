@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :users, except: %i[ index ]
 
-  resources :todo_lists
+  resources :todo_lists do
+    resources :todo_items
+  end
 
   resources :questions do
     resources :comments, only: %i[ create destroy ]
