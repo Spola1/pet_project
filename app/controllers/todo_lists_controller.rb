@@ -12,7 +12,7 @@ class TodoListsController < ApplicationController
 
   # GET /todo_lists/new
   def new
-    @todo_list = TodoList.new
+    @todo_list = current_user.todo_lists.build
   end
 
   # GET /todo_lists/1/edit
@@ -21,10 +21,11 @@ class TodoListsController < ApplicationController
 
   # POST /todo_lists
   def create
-    @todo_list = TodoList.new(todo_list_params)
+    @todo_list = current_user.todo_lists.build(todo_list_params)
 
     if @todo_list.save
-      redirect_to @todo_list, notice: "Todo list was successfully created."
+      flash[:success] = 'Todo list was successfully created.'
+      redirect_to @todo_list
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +34,8 @@ class TodoListsController < ApplicationController
   # PATCH/PUT /todo_lists/1
   def update
     if @todo_list.update(todo_list_params)
-      redirect_to @todo_list, notice: "Todo list was successfully updated."
+      flash[:success] = 'Todo list was successfully updated.'
+      redirect_to @todo_list
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +44,8 @@ class TodoListsController < ApplicationController
   # DELETE /todo_lists/1
   def destroy
     @todo_list.destroy
-    redirect_to todo_lists_url, notice: "Todo list was successfully destroyed."
+    flash[:success] = 'Todo list was successfully destroyed.'
+    redirect_to todo_lists_url
   end
 
   private

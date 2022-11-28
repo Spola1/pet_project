@@ -4,12 +4,20 @@ class TodoItemsController < ApplicationController
 
   def create
     @todo_item = @todo_list.todo_items.create(todo_item_params)
-    redirect_to @todo_list, notice: "Todo item created"
+    @todo_item.user = current_user
+
+    if @todo_item.save
+      flash[:success] = 'Todo item created!'
+      redirect_to(todo_list_path(@todo_list))
+    end
+
   end
 
   def complete
     @todo_item.update_attribute(:completed_at, Time.now)
-    redirect_to @todo_list, notice: "Todo item completed"
+
+    flash[:success] = 'Todo item completed!'
+    redirect_to @todo_list
   end
 
   def destroy

@@ -8,6 +8,7 @@
     <%= render todo_list %>
     <p>
       <%= link_to "Show this todo list", todo_list %>
+      <%= link_to "Delete", todo_list_path(todo_list), method: :delete, data: { confirm: "Are you sure?" } %>
     </p>
   <% end %>
 </div>
