@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resource :session, only: %i[ new create destroy ]
 
-  resources :users, except: %i[ index ]
+  resources :users, except: %i[ index ] do
+    put 'ban', on: :member
+  end
 
   resources :questions do
     resources :comments, only: %i[ create destroy ]
