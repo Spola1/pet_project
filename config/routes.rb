@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :users, except: %i[ index ]
 
   resources :todo_lists do
-    resources :todo_items
+    resources :todo_items do
+      member do
+        patch :complete
+      end
+    end
   end
 
   resources :questions do
