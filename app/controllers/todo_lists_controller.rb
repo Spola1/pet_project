@@ -1,5 +1,5 @@
 class TodoListsController < ApplicationController
-  before_action :set_todo_list, only: %i[ show edit update destroy ]
+  before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
 
   # GET /todo_lists
   def index
@@ -7,8 +7,7 @@ class TodoListsController < ApplicationController
   end
 
   # GET /todo_lists/1
-  def show
-  end
+  def show; end
 
   # GET /todo_lists/new
   def new
@@ -16,8 +15,7 @@ class TodoListsController < ApplicationController
   end
 
   # GET /todo_lists/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /todo_lists
   def create
@@ -25,9 +23,9 @@ class TodoListsController < ApplicationController
 
     if @todo_list.save
       flash[:success] = 'Todo list was successfully created.'
-      redirect_to @todo_list
+      redirect_to(@todo_list)
     else
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -35,9 +33,9 @@ class TodoListsController < ApplicationController
   def update
     if @todo_list.update(todo_list_params)
       flash[:success] = 'Todo list was successfully updated.'
-      redirect_to @todo_list
+      redirect_to(@todo_list)
     else
-      render :edit, status: :unprocessable_entity
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
@@ -45,17 +43,18 @@ class TodoListsController < ApplicationController
   def destroy
     @todo_list.destroy
     flash[:success] = 'Todo list was successfully destroyed.'
-    redirect_to todo_lists_url
+    redirect_to(todo_lists_url)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_todo_list
-      @todo_list = TodoList.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def todo_list_params
-      params.require(:todo_list).permit(:title, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_todo_list
+    @todo_list = TodoList.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def todo_list_params
+    params.require(:todo_list).permit(:title, :description)
+  end
 end

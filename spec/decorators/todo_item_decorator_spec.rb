@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe TodoItemDecorator do
+RSpec.describe(TodoItemDecorator) do
 end

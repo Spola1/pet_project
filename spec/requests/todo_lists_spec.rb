@@ -12,120 +12,119 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/todo_lists", type: :request do
-  
+RSpec.describe('/todo_lists', type: :request) do
   # This should return the minimal set of attributes required to create a valid
   # TodoList. As you add validations to TodoList, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    skip('Add a hash of attributes valid for your model')
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    skip('Add a hash of attributes invalid for your model')
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      TodoList.create! valid_attributes
+  describe 'GET /index' do
+    it 'renders a successful response' do
+      TodoList.create!(valid_attributes)
       get todo_lists_url
-      expect(response).to be_successful
+      expect(response).to(be_successful)
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
-      todo_list = TodoList.create! valid_attributes
+  describe 'GET /show' do
+    it 'renders a successful response' do
+      todo_list = TodoList.create!(valid_attributes)
       get todo_list_url(todo_list)
-      expect(response).to be_successful
+      expect(response).to(be_successful)
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_todo_list_url
-      expect(response).to be_successful
+      expect(response).to(be_successful)
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
-      todo_list = TodoList.create! valid_attributes
+  describe 'GET /edit' do
+    it 'renders a successful response' do
+      todo_list = TodoList.create!(valid_attributes)
       get edit_todo_list_url(todo_list)
-      expect(response).to be_successful
+      expect(response).to(be_successful)
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new TodoList" do
-        expect {
-          post todo_lists_url, params: { todo_list: valid_attributes }
-        }.to change(TodoList, :count).by(1)
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new TodoList' do
+        expect do
+          post(todo_lists_url, params: { todo_list: valid_attributes })
+        end.to(change(TodoList, :count).by(1))
       end
 
-      it "redirects to the created todo_list" do
+      it 'redirects to the created todo_list' do
         post todo_lists_url, params: { todo_list: valid_attributes }
-        expect(response).to redirect_to(todo_list_url(TodoList.last))
+        expect(response).to(redirect_to(todo_list_url(TodoList.last)))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new TodoList" do
-        expect {
-          post todo_lists_url, params: { todo_list: invalid_attributes }
-        }.to change(TodoList, :count).by(0)
+    context 'with invalid parameters' do
+      it 'does not create a new TodoList' do
+        expect do
+          post(todo_lists_url, params: { todo_list: invalid_attributes })
+        end.to(change(TodoList, :count).by(0))
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post todo_lists_url, params: { todo_list: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to(be_successful)
       end
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested todo_list" do
-        todo_list = TodoList.create! valid_attributes
-        patch todo_list_url(todo_list), params: { todo_list: new_attributes }
-        todo_list.reload
-        skip("Add assertions for updated state")
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
       end
 
-      it "redirects to the todo_list" do
-        todo_list = TodoList.create! valid_attributes
+      it 'updates the requested todo_list' do
+        todo_list = TodoList.create!(valid_attributes)
         patch todo_list_url(todo_list), params: { todo_list: new_attributes }
         todo_list.reload
-        expect(response).to redirect_to(todo_list_url(todo_list))
+        skip('Add assertions for updated state')
+      end
+
+      it 'redirects to the todo_list' do
+        todo_list = TodoList.create!(valid_attributes)
+        patch todo_list_url(todo_list), params: { todo_list: new_attributes }
+        todo_list.reload
+        expect(response).to(redirect_to(todo_list_url(todo_list)))
       end
     end
 
-    context "with invalid parameters" do
+    context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        todo_list = TodoList.create! valid_attributes
+        todo_list = TodoList.create!(valid_attributes)
         patch todo_list_url(todo_list), params: { todo_list: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to(be_successful)
       end
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested todo_list" do
-      todo_list = TodoList.create! valid_attributes
-      expect {
-        delete todo_list_url(todo_list)
-      }.to change(TodoList, :count).by(-1)
+  describe 'DELETE /destroy' do
+    it 'destroys the requested todo_list' do
+      todo_list = TodoList.create!(valid_attributes)
+      expect do
+        delete(todo_list_url(todo_list))
+      end.to(change(TodoList, :count).by(-1))
     end
 
-    it "redirects to the todo_lists list" do
-      todo_list = TodoList.create! valid_attributes
+    it 'redirects to the todo_lists list' do
+      todo_list = TodoList.create!(valid_attributes)
       delete todo_list_url(todo_list)
-      expect(response).to redirect_to(todo_lists_url)
+      expect(response).to(redirect_to(todo_lists_url))
     end
   end
 end

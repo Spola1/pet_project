@@ -10,25 +10,24 @@ class TodoItemsController < ApplicationController
       flash[:success] = 'Todo item created!'
       redirect_to(todo_list_path(@todo_list))
     end
-
   end
 
   def complete
     @todo_item.update_attribute(:completed_at, Time.now)
 
     flash[:success] = 'Todo item completed!'
-    redirect_to @todo_list
+    redirect_to(@todo_list)
   end
 
   def destroy
     @todo_item = @todo_list.todo_items.find(params[:id])
 
     if @todo_item.destroy
-      flash[:success] = "Todo List item was deleted."
+      flash[:success] = 'Todo List item was deleted.'
     else
-      flash[:error] = "Todo List item could not be deleted."
+      flash[:error] = 'Todo List item could not be deleted.'
     end
-    redirect_to @todo_list
+    redirect_to(@todo_list)
   end
 
   private
