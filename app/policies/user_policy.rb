@@ -18,4 +18,8 @@ class UserPolicy < ApplicationPolicy
   def destroy?
     false
   end
+
+  def ban?
+    true
+  end
 end

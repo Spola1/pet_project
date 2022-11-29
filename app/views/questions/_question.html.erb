@@ -1,5 +1,5 @@
 <article class="card mt-3">
-  <selection class="card-header d-flex">
+  <selection class="card-header d-flex background-color-post-header">
     <div class="align-top">
       <%= link_to image_tag(question.user.gravatar_url, class: 'rounded m-1'), user_path(question.user) %>
       <%= link_to question.user.nickname, user_path(question.user) %>
@@ -9,7 +9,7 @@
     </div>
   </selection>
 
-  <div class="card-body">
+  <div class="card-body background-color-post-body">
     <h4><%= question.title %></h4>
 
     <section class="card-text">
