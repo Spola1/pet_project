@@ -26,6 +26,8 @@ gem 'blueprinter'
 gem 'pundit', '~> 2.1'
 gem 'letsrate'
 gem 'carrierwave'
+gem 'responders'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
