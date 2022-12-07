@@ -29,4 +29,10 @@ Rails.application.routes.draw do
   resources :tags, only: %i[ show ]
 
   root 'pages#index'
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :users, only: [:index, :show]
+    end
+  end
 end
