@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_28_170317) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_102210) do
   create_table "answers", force: :cascade do |t|
     t.text "body", null: false
     t.integer "question_id", null: false
@@ -57,6 +57,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_170317) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "todo_items", force: :cascade do |t|
+    t.string "content"
+    t.integer "todo_list_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "completed_at"
+    t.integer "user_id", null: false
+    t.index ["todo_list_id"], name: "index_todo_items_on_todo_list_id"
+    t.index ["user_id"], name: "index_todo_items_on_user_id"
+  end
+
+  create_table "todo_lists", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_todo_lists_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "name"
@@ -77,4 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_28_170317) do
   add_foreign_key "question_tags", "questions"
   add_foreign_key "question_tags", "tags"
   add_foreign_key "questions", "users"
+  add_foreign_key "todo_items", "todo_lists"
+  add_foreign_key "todo_items", "users"
+  add_foreign_key "todo_lists", "users"
 end

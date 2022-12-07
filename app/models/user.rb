@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :questions
   has_many :answers
+  has_many :todo_lists
+  has_many :todo_items
 
   has_secure_password validations: false
 

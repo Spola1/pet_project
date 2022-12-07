@@ -1,0 +1,17 @@
+<% provide :page_title, 'Todo Lists' %>
+<% currently_at 'Todo Lists' %>
+
+<h1>My todo lists</h1>
+
+<%= link_to "New todo list", new_todo_list_path, class: 'btn btn-primary btn-lg mb-3' %>
+
+<div id="todo_lists">
+  <% @todo_lists.each do |todo_list| %>
+    <%= render todo_list %>
+    <p>
+      <%= link_to "Show", todo_list %>
+      <%= link_to "Edit", edit_todo_list_path(todo_list) %>
+      <%= link_to "Delete", todo_list_path(todo_list), method: :delete, data: { confirm: "Are you sure?" } %>
+    </p>
+  <% end %>
+</div>

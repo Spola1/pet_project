@@ -5,6 +5,14 @@ Rails.application.routes.draw do
     put 'ban', on: :member
   end
 
+  resources :todo_lists do
+    resources :todo_items do
+      member do
+        patch :complete
+      end
+    end
+  end
+
   resources :questions do
     resources :comments, only: %i[ create destroy ]
     resources :answers, exept: %i[ new show ]
