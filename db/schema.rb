@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_102210) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_161421) do
   create_table "answers", force: :cascade do |t|
     t.text "body", null: false
     t.integer "question_id", null: false
@@ -30,6 +30,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_102210) do
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "qs", force: :cascade do |t|
+    t.string "name"
+    t.integer "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_qs_on_answer_id"
   end
 
   create_table "question_tags", force: :cascade do |t|
@@ -94,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_102210) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "comments", "users"
+  add_foreign_key "qs", "answers"
   add_foreign_key "question_tags", "questions"
   add_foreign_key "question_tags", "tags"
   add_foreign_key "questions", "users"
