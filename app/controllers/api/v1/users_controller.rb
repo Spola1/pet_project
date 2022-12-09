@@ -1,12 +1,12 @@
 class Api::V1::UsersController < Api::V1::ApplicationController
   def me
-    render json: current_resource_owner
+    render(json: current_resource_owner)
   end
 
   def show
     @user = User.find(params[:id])
 
-    render json: @user
+    render(json: @user)
   end
 
   def index

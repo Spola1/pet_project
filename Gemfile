@@ -5,7 +5,7 @@ ruby '3.0.2'
 
 gem 'rails', '~> 7.0.4'
 gem 'sprockets-rails'
-gem 'sqlite3', '~> 1.4'
+gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
@@ -29,6 +29,7 @@ gem 'carrierwave'
 gem 'responders'
 gem 'active_model_serializers'
 gem 'doorkeeper'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
