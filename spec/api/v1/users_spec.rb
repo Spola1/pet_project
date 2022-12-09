@@ -51,6 +51,8 @@ describe 'Users API', type: :request do
       it 'returns all public fields' do
         json = JSON.parse(response.body)
         expect(json['id']).to eq user.id
+        expect(json['email']).to eq user.email
+        expect(json['nickname']).to eq user.nickname
       end
     end
   end
