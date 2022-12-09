@@ -1,4 +1,4 @@
 class UserSerializer < ApplicationSerializer
-  attributes :email
+  attributes :id, :email, :nickname
   has_many :answers
 end

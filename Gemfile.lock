@@ -114,6 +114,8 @@ GEM
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
     digest (3.1.0)
+    doorkeeper (5.6.2)
+      railties (>= 5)
     draper (4.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -122,6 +124,8 @@ GEM
       request_store (>= 1.0)
       ruby2_keywords
     erubi (1.11.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
     faker (2.23.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
@@ -326,7 +330,9 @@ DEPENDENCIES
   caxlsx_rails
   cssbundling-rails
   debug
+  doorkeeper
   draper
+  factory_bot
   faker (~> 2)
   gravtastic
   jsbundling-rails

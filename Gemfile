@@ -28,6 +28,7 @@ gem 'letsrate'
 gem 'carrierwave'
 gem 'responders'
 gem 'active_model_serializers'
+gem 'doorkeeper'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
@@ -35,6 +36,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rubocop'
   gem 'rspec-rails'
+  gem 'factory_bot'
 end
 
 group :development do
