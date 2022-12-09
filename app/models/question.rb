@@ -2,7 +2,7 @@ class Question < ApplicationRecord
   include Commentable
   include Ownership
 
-  has_many :answers, dependent: :destroy
+  has_many :answers, dependent: :delete_all
   belongs_to :user
   has_many :question_tags, dependent: :destroy
   has_many :tags, through: :question_tags

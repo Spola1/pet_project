@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   resource :session, only: %i[ new create destroy ]
 
   resources :users, except: %i[ index ] do
