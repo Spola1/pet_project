@@ -1,8 +1,12 @@
 class Api::V1::UsersController < Api::V1::ApplicationController
-  def show
-    user = User.find(params[:id])
+  def me
+    render json: current_resource_owner
+  end
 
-    render json: user.to_json(include: { answers: {include: { qs: {only: [:id, :name] } }, only: [:id, :body, :question_id] } }, only: [:id, :email, :name, :nickname])
+  def show
+    @user = User.find(params[:id])
+
+    render json: @user
   end
 
   def index
