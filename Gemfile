@@ -38,6 +38,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rspec-rails'
   gem 'factory_bot'
+  gem 'shoulda-matchers'
 end
 
 group :development do

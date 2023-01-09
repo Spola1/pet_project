@@ -20,6 +20,8 @@ class User < ApplicationRecord
                        length: { minimum: 3, maximum: 70 }
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
+  validates :name, presence: true
+  validates :nickname, presence: true, uniqueness: true
 
   def owner?(obj)
     obj.user == self
