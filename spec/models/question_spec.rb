@@ -19,13 +19,25 @@ RSpec.describe Question, type: :model do
     expect(question).to(be_valid)
   end
 
-  it 'should not be valid' do
-    question = Question.create(title:nil, body:nil, user:nil)
-    expect(question).not_to(be_valid)
-  end
-
   it 'should question create' do
     question = create(:question)
     assert question.persisted?
+  end
+
+  describe 'validations' do
+    it 'should not let a question be created without an title' do
+      question.title = nil
+      expect(question).to_not be_valid
+    end
+
+    it 'should not let a question be created without an body' do
+      question.body = nil
+      expect(question).to_not be_valid
+    end
+
+    it 'should not let a question be created without user' do
+      question.user = nil
+      expect(question).to_not be_valid
+    end
   end
 end

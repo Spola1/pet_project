@@ -9,6 +9,9 @@ class TodoItemsController < ApplicationController
     if @todo_item.save
       flash[:success] = 'Todo item created!'
       redirect_to(todo_list_path(@todo_list))
+    else
+      flash[:error] = 'Todo item content can\'t be blank'
+      redirect_to(@todo_list)
     end
   end
 
