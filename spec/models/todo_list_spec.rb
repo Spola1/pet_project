@@ -18,17 +18,17 @@ RSpec.describe(TodoList, type: :model) do
   describe 'validations' do
     it 'should not let a todo_list be created without an content' do
       todo_list.title = nil
-      expect(todo_list).to_not be_valid
+      expect(todo_list).to_not(be_valid)
     end
 
     it 'should not let a todo_list be created without an todo_list_id' do
       todo_list.description = nil
-      expect(todo_list).to_not be_valid
+      expect(todo_list).to_not(be_valid)
     end
 
     it 'should not let a todo_list be created without user' do
       todo_list.user = nil
-      expect(todo_list).to_not be_valid
+      expect(todo_list).to_not(be_valid)
     end
   end
 end
