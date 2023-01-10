@@ -10,6 +10,6 @@ FactoryBot.define do
   factory :todo_list do
     title
     description
-    user_id { create(:user).id }
+    user
   end
 end

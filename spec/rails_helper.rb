@@ -1,6 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'shoulda/matchers'
+require 'with_model'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -11,6 +12,7 @@ require 'rspec/rails'
 RSpec.configure do |config|
   FactoryBot.reload
   config.include(FactoryBot::Syntax::Methods)
+  config.extend  WithModel
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 

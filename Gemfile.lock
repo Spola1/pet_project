@@ -320,6 +320,8 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    with_model (2.1.6)
+      activerecord (>= 5.2)
     zeitwerk (2.6.0)
 
 PLATFORMS
@@ -363,6 +365,7 @@ DEPENDENCIES
   tzinfo-data
   valid_email2
   web-console
+  with_model
 
 RUBY VERSION
    ruby 3.0.2p107
