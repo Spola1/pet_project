@@ -23,5 +23,7 @@
   </div>
 </article>
 
-<%= render 'comments/commentable', commentable: answer, comment: @comment,
-  html_id: dom_id(answer, 'comment_form') %>
+<div class="mt-2 pb-2">
+  <%= render 'comments/commentable', commentable: answer, comment: @comment,
+    html_id: dom_id(answer, 'comment_form') %>
+</div>
