@@ -1,6 +1,6 @@
-# fly.toml file generated for white-silence-9242 on 2023-01-10T13:10:58+03:00
+# fly.toml file generated for broken-pine-9785 on 2023-01-10T13:52:57+03:00
 
-app = "white-silence-9242"
+app = "broken-pine-9785"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
