@@ -4,6 +4,7 @@
   font-size: 100px;
 }
 
+<<<<<<< HEAD
 $white_opaque: rgba(250, 250, 250, .3);
 $dark: #1F7972;
 
@@ -208,3 +209,16 @@ input[type="submit"] {
 }
 
 ::-webkit-input-placeholder { color: $dark; }
+=======
+.background-color-body {
+  background-color: #AFEEEE;
+}
+
+.background-color-post-body {
+  background-color: #ADD8E6;
+}
+
+.background-color-post-header {
+  background-color: #87CEEB;
+}
+>>>>>>> 42ea2565a137b5ad78510ba01f6ee708e5431859

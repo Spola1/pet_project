@@ -24,6 +24,7 @@ gem 'activerecord-import'
 gem 'gravtastic'
 gem 'blueprinter'
 gem 'pundit', '~> 2.1'
+gem 'letsrate'
 gem 'carrierwave'
 
 group :development, :test do

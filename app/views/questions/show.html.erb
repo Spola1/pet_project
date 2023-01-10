@@ -26,17 +26,14 @@
   <% end %>
 </div>
 
-
 <%= render 'comments/commentable', commentable: @question, comment: @comment,
   html_id: 'questionComments' %>
 
 <hr class="my-3">
 
-<h2>Your answer</h2>
+<%= render 'answers/form' %>
 
-  <%= render 'answers/form' %>
-
-<h2 class="mt-5">Answers</h2>
+<h2 class="mt-5">Answers:</h2>
 
 <div class="mt-3">
   <%= pagination @pagy %>
