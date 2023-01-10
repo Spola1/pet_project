@@ -43,6 +43,7 @@ group :development, :test do
 end
 
 group :production do
+  gem 'faker', '~> 2'
   gem 'pg'
 end
 
