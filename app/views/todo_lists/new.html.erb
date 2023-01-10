@@ -1,12 +1,14 @@
 <% provide :page_title, 'New Todo Lists' %>
 <% currently_at 'New Todo Lists' %>
 
-<h1>New todo list</h1>
+<div class="to-do-container">
+  <h1 class="todo_list_title">New todo list</h1>
 
-<%= render "form", todo_list: @todo_list %>
+  <%= render "form", todo_list: @todo_list %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Back to todo lists", todo_lists_path %>
+  <div class="links todo_list_title">
+    <%= link_to "Back to todo lists", todo_lists_path %>
+  </div>
 </div>

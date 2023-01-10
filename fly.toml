@@ -1,6 +1,12 @@
+<<<<<<< HEAD
+# fly.toml file generated for lingering-sun-3460 on 2023-01-10T13:58:05+03:00
+
+app = "lingering-sun-3460"
+=======
 # fly.toml file generated for broken-pine-9785 on 2023-01-10T13:52:57+03:00
 
 app = "broken-pine-9785"
+>>>>>>> main
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
