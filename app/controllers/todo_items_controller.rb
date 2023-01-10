@@ -10,7 +10,7 @@ class TodoItemsController < ApplicationController
       flash[:success] = 'Todo item created!'
       redirect_to(todo_list_path(@todo_list))
     else
-      flash[:error] = 'Todo item content can\'t be blank'
+      flash[:danger] = 'Todo item content can\'t be blank'
       redirect_to(@todo_list)
     end
   end
@@ -28,7 +28,7 @@ class TodoItemsController < ApplicationController
     if @todo_item.destroy
       flash[:success] = 'Todo List item was deleted.'
     else
-      flash[:error] = 'Todo List item could not be deleted.'
+      flash[:danger] = 'Todo List item could not be deleted.'
     end
     redirect_to(@todo_list)
   end
