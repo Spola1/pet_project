@@ -2,6 +2,8 @@ user1 = User.create(email:'alexeihowar50@gmail.com', name:'Alex', nickname:'spol
   password:'111', password_confirmation:'111', role: 'admin')
 user2 = User.create(email:'1@1.ru', name:'Alex', nickname:'vasya',
   password:'111', password_confirmation:'111')
+user3 = User.create(email:'admin@admin.com', name:'admin', nickname:'admin',
+  password:'admin', password_confirmation:'admin')
 
 40.times do
   title = Faker::Hipster.sentence(word_count: 3)
