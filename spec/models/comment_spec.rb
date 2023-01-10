@@ -6,6 +6,8 @@ RSpec.describe(Comment, type: :model) do
   it { should belong_to(:commentable) }
   it { should belong_to(:user) }
 
+  it { should validate_presence_of(:body) }
+
   it 'should be valid' do
     expect(comment).to(be_valid)
   end
