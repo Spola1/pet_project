@@ -1,13 +1,15 @@
 <% provide :page_title, 'Editing Todo List' %>
 <% currently_at 'Editing Todo List' %>
 
-<h1>Editing todo list</h1>
+<div class="to-do-container">
+  <h1 class="todo_list_title">Editing todo_list: <%= @todo_list.title %></h1>
 
-<%= render "form", todo_list: @todo_list %>
+  <%= render "form", todo_list: @todo_list %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this todo list", @todo_list %> |
-  <%= link_to "Back to todo lists", todo_lists_path %>
+  <div class="links todo_list_title">
+    <%= link_to "Show this todo list", @todo_list %> |
+    <%= link_to "Back to todo lists", todo_lists_path %>
+  </div>
 </div>
