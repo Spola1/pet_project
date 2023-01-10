@@ -5,7 +5,6 @@ ruby '3.0.2'
 
 gem 'rails', '~> 7.0.4'
 gem 'sprockets-rails'
-gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 5.0'
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
@@ -26,15 +25,30 @@ gem 'blueprinter'
 gem 'pundit', '~> 2.1'
 gem 'letsrate'
 gem 'carrierwave'
+gem 'responders'
+gem 'active_model_serializers'
+gem 'doorkeeper'
+gem 'dotenv-rails'
+gem 'with_model'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker', '~> 2'
   gem 'pry-rails'
   gem 'rubocop'
+  gem 'pg'
   gem 'rspec-rails'
+  gem 'factory_bot'
+  gem 'shoulda-matchers'
+end
+
+group :production do
+  gem 'faker', '~> 2'
+  gem 'pg'
 end
 
 group :development do
   gem 'web-console'
+  gem 'letter_opener'
+  gem 'letter_opener_web'
 end

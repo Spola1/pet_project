@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  use_doorkeeper
   resource :session, only: %i[ new create destroy ]
 
   resources :users, except: %i[ index ] do
@@ -29,4 +30,12 @@ Rails.application.routes.draw do
   resources :tags, only: %i[ show ]
 
   root 'pages#index'
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :users do
+        get :me, on: :collection
+      end
+    end
+  end
 end

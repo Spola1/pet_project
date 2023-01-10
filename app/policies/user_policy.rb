@@ -1,6 +1,6 @@
 class UserPolicy < ApplicationPolicy
   def create?
-    user.guest?
+    true
   end
 
   def update?
