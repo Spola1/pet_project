@@ -12,9 +12,9 @@
     data: {method: :delete, confirm: 'Are you sure?'} %>
 
   <% if user.banned == false %>
-    <%= button_to 'Ban', ban_user_path(user), class: 'btn btn-danger', method: :put %>
+    <%= link_to 'Ban', ban_user_path(user), class: 'btn btn-danger', method: :put %>
   <% else %>
-    <%= button_to 'Unban', ban_user_path(user), class: 'btn btn-warning', method: :put %>
+    <%= link_to 'Unban', ban_user_path(user), class: 'btn btn-warning', method: :put %>
   <% end %>
   </td>
 </tr>
