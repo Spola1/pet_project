@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot'
   gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 group :production do

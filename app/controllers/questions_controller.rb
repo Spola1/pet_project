@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
   def update
     if @question.update(question_params)
       flash[:success] = 'Question updated!'
-      redirect_to(questions_path)
+      redirect_to(question_path(@question))
     else
       render(:edit)
     end
@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build(question_params)
     if @question.save
       flash[:success] = 'Question created!'
-      redirect_to(questions_path)
+      redirect_to(question_path(@question))
     else
       render(:new)
     end
