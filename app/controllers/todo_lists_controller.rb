@@ -1,5 +1,7 @@
 class TodoListsController < ApplicationController
   before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_todo_list!
+  after_action :verify_authorized
 
   # GET /todo_lists
   def index
@@ -56,5 +58,9 @@ class TodoListsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def todo_list_params
     params.require(:todo_list).permit(:title, :description)
+  end
+
+  def authorize_todo_list!
+    authorize(@todo_list || TodoList)
   end
 end
