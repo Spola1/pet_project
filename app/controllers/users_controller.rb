@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = 'Your profile was successfully updated!'
-      redirect_to(root_path)
+      redirect_to(@user)
     else
       render(:edit)
     end
@@ -32,12 +32,6 @@ class UsersController < ApplicationController
     else
       render(:new)
     end
-  end
-
-  def ban
-    @user.toggle!(:banned)
-
-    redirect_to(user_path(@user))
   end
 
   private

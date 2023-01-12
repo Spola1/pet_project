@@ -9,7 +9,7 @@ RSpec.describe CommentsController, type: :controller do
       before { login(user) }
 
       context 'with valid attributes' do
-        it 'saves a new question_with_comments in database' do
+        it 'saves a new comment in database' do
           expect do
             post :create, params: { question_id: question, comment: attributes_for(:comment) }
           end.to change(Comment, :count).by(1)

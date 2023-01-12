@@ -13,9 +13,9 @@
 
   <% if current_user&.role == 'admin' %>
     <% if @user.banned == false %>
-    <%= button_to 'Ban', ban_user_path(@user), class: 'btn btn-danger', method: :put %>
+    <%= button_to 'Ban', ban_admin_user_path(@user), class: 'btn btn-danger', method: :put %>
     <% else %>
-      <%= button_to 'Unban', ban_user_path(@user), class: 'btn btn-warning', method: :put %>
+      <%= button_to 'Unban', ban_admin_user_path(@user), class: 'btn btn-warning', method: :put %>
     <% end %>
   <% end %>
 

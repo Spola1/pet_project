@@ -7,14 +7,15 @@
   <td><%= user.created_at %></td>
   <td><%= user.banned %></td>
   <td>
+  <%= link_to 'Show', user_path(user), class: 'btn btn-secondary' %>
   <%= link_to 'Edit', edit_admin_user_path(user), class: 'btn btn-secondary' %>
   <%= link_to 'Delete', admin_user_path(user), class: 'btn btn-danger',
     data: {method: :delete, confirm: 'Are you sure?'} %>
 
   <% if user.banned == false %>
-    <%= link_to 'Ban', ban_user_path(user), class: 'btn btn-danger', method: :put %>
+    <%= link_to 'Ban', ban_admin_user_path(user), class: 'btn btn-danger', method: :put %>
   <% else %>
-    <%= link_to 'Unban', ban_user_path(user), class: 'btn btn-warning', method: :put %>
+    <%= link_to 'Unban', ban_admin_user_path(user), class: 'btn btn-warning', method: :put %>
   <% end %>
   </td>
 </tr>

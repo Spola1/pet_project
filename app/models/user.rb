@@ -7,10 +7,11 @@ class User < ApplicationRecord
 
   attr_accessor :old_password, :admin_edit
 
-  has_many :questions
-  has_many :answers
-  has_many :todo_lists
-  has_many :todo_items
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :todo_lists, dependent: :destroy
+  has_many :todo_items, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_secure_password validations: false
 

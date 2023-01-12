@@ -2,10 +2,10 @@ class Question < ApplicationRecord
   include Commentable
   include Ownership
 
-  has_many :answers, dependent: :delete_all
+  has_many :answers, dependent: :destroy
   belongs_to :user
   has_many :question_tags, dependent: :destroy
-  has_many :tags, through: :question_tags
+  has_many :tags, through: :question_tags, dependent: :destroy
 
   validates :title, presence: true, length: { minimum: 5 }
   validates :body, presence: true, length: { minimum: 5 }
