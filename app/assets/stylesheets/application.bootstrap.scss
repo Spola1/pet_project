@@ -225,3 +225,9 @@ input[type="submit"] {
 }
 
 ::-webkit-input-placeholder { color: $dark; }
+
+@media only screen and (max-width: 400px) {
+  .btn-font-size {
+    font-size: 50px;
+  }
+}
