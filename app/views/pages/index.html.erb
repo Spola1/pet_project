@@ -1,16 +1,14 @@
 <% currently_at 'Home' %>
 <% provide :page_title %>
 
-<div class="container">
-  <div class="row col-12 col-lg-auto">
+<div class="row">
+  <div class="col-xxl-6 col-xl-6 col-lg-12 mb-3 display: flex">
     <div class="col"><%= link_to 'Questions', questions_path,
-      class: 'btn btn-outline-info btn-lg p-5 btn-font-size nav-link px-2 m-2' %></div>
+      class: 'btn-font-size nav-link px-2 m-2' %></div>
   </div>
-</div>
 
-<div class="container">
-  <div class="row col-12 col-lg-auto">
+  <div class="col-xxl-6 col-xl-6 col-lg-12 mb-3 display: flex">
     <div class="col"><%= link_to 'My Todo Lists', todo_lists_path,
-      class: 'btn btn-outline-info btn-lg p-5 btn-font-size nav-link px-2 m-2' %></div>
+      class: 'btn-font-size nav-link px-2 m-2' %></div>
   </div>
 </div>
