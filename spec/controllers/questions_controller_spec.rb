@@ -48,7 +48,7 @@ RSpec.describe QuestionsController, type: :controller do
     end
 
     context 'Unauthorized user' do
-      it 'render sign in view' do
+      it 'redirect to root_path' do
         get :new
         expect(response).to redirect_to root_path
       end
@@ -57,7 +57,7 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'Get #edit' do
     context 'Authorized author' do
-      it 'render create view when user is question author' do
+      it 'render edit view when user is question author' do
         login(question.user)
         get :edit, params: { id: question }
         expect(response).to render_template :edit
@@ -73,7 +73,7 @@ RSpec.describe QuestionsController, type: :controller do
     end
 
     context 'Unauthorized user' do
-      it 'render root_path view' do
+      it 'redirect to root_path' do
         get :edit, params: { id: question }
         expect(response).to redirect_to root_path
       end
@@ -89,7 +89,7 @@ RSpec.describe QuestionsController, type: :controller do
           expect { post :create, params: { question: attributes_for(:question) } }.to change(Question, :count).by(1)
         end
 
-        it 'redirects to show view' do
+        it 'redirect to show view' do
           post :create, params: { question: attributes_for(:question) }
           expect(response).to redirect_to assigns(:question)
         end
@@ -102,7 +102,7 @@ RSpec.describe QuestionsController, type: :controller do
           end.to_not change(Question, :count)
         end
 
-        it 're-renders new view' do
+        it 're-render new view' do
           post :create, params: { question: attributes_for(:question, title: nil) }
           expect(response).to render_template :new
         end
@@ -111,11 +111,11 @@ RSpec.describe QuestionsController, type: :controller do
 
     context 'Unauthorized user' do
       context 'with valid attributes' do
-        it 'not saves a new question in database' do
+        it 'not save a new question in database' do
           expect { post :create, params: { question: attributes_for(:question) } }.to_not change(Question, :count)
         end
 
-        it 'redirect to root path view' do
+        it 'redirect to root_path' do
           post :create, params: { question: attributes_for(:question) }
           expect(response).to redirect_to root_path
         end
@@ -128,7 +128,7 @@ RSpec.describe QuestionsController, type: :controller do
           end.to_not change(Question, :count)
         end
 
-        it 'redirects to root_path' do
+        it 'redirect to root_path' do
           post :create, params: { question: attributes_for(:question) }
           expect(response).to redirect_to root_path
         end
@@ -154,7 +154,7 @@ RSpec.describe QuestionsController, type: :controller do
           expect(question.body).to eq 'new body'
         end
 
-        it 'redirects to updated question show view' do
+        it 'redirect to updated question show view' do
           patch :update, params: { id: question, question: attributes_for(:question) }
           expect(response).to redirect_to question
         end
@@ -170,7 +170,7 @@ RSpec.describe QuestionsController, type: :controller do
           expect(question.body).to eq old_body
         end
 
-        it 're-renders update view' do
+        it 're-render update view' do
           expect(response).to render_template :edit
         end
       end
@@ -197,11 +197,11 @@ RSpec.describe QuestionsController, type: :controller do
     context 'Authorized author' do
       before { login(question.user) }
 
-      it 'deletes the question' do
+      it 'delete the question' do
         expect { delete :destroy, params: { id: question } }.to change(Question, :count).by(-1)
       end
 
-      it 'redirects to questions path' do
+      it 'redirect to questions path' do
         delete :destroy, params: { id: question }
         expect(response).to redirect_to questions_path
       end
@@ -228,7 +228,7 @@ RSpec.describe QuestionsController, type: :controller do
         expect { delete :destroy, params: { id: question } }.to_not change(Question, :count)
       end
 
-      it 'redirects to sign in' do
+      it 'redirects to root path' do
         delete :destroy, params: { id: question }
         expect(response).to redirect_to root_path
       end

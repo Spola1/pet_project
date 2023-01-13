@@ -4,7 +4,7 @@ class TodoListPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin_role? || user.moderator_role? || user.owner?(record)
+    user.present? && (user.admin_role? || user.moderator_role? || user.owner?(record))
   end
 
   def index?
@@ -12,10 +12,10 @@ class TodoListPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present? && user.owner?(record) || user.admin_role? || user.moderator_role?
+    user.present? && (user.owner?(record) || user.admin_role? || user.moderator_role?)
   end
 
   def destroy?
-    user.present? && user.owner?(record) || user.admin_role?
+    user.present? && (user.owner?(record) || user.admin_role?)
   end
 end

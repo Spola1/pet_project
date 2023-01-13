@@ -4,7 +4,7 @@ RSpec.describe(Question, type: :model) do
   let(:question) { create(:question) }
 
   it { should belong_to(:user) }
-  it { should have_many(:answers).dependent(:delete_all) }
+  it { should have_many(:answers).dependent(:destroy) }
   it { should have_many(:question_tags).dependent(:destroy) }
   it { should have_many(:tags).through(:question_tags) }
 
