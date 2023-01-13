@@ -7,5 +7,6 @@ FactoryBot.define do
     content
     todo_list_id { create(:todo_list).id }
     user
+    completed_at { nil }
   end
 end

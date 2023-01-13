@@ -1,6 +1,8 @@
 class TodoItemsController < ApplicationController
   before_action :set_todo_list
   before_action :set_todo_item, except: [:create]
+  before_action :authorize_todo_item!
+  after_action :verify_authorized
 
   def create
     @todo_item = @todo_list.todo_items.create(todo_item_params)
@@ -45,5 +47,9 @@ class TodoItemsController < ApplicationController
 
   def set_todo_item
     @todo_item = @todo_list.todo_items.find(params[:id])
+  end
+
+  def authorize_todo_item!
+    authorize(@todo_item || TodoItem)
   end
 end
