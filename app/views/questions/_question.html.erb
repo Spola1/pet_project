@@ -1,31 +1,44 @@
 <article class="card mt-3">
-  <selection class="card-header d-flex background-color-post-header">
+  <selection class="card-header background-color-post-header">
     <div class="align-top">
-      <%= link_to image_tag(question.user.gravatar_url, class: 'rounded m-1'), user_path(question.user) %>
-      <%= link_to question.user.nickname, user_path(question.user) %>
-      <% if question.tags.present? %>
-          | <%= links_for_tags(question.tags) %>
-      <% end %>
+      <div class="row">
+        <div class="col">
+          <%= link_to image_tag(question.user.gravatar_url, class: 'rounded m-1'), user_path(question.user) %>
+          <%= link_to question.user.nickname, user_path(question.user) %>
+          <% if question.tags.present? %>
+              | <%= links_for_tags(question.tags) %>
+          <% end %>
+        </div>
+        <div class="col right mt-2">
+          <time datetime="<%= question.created_at_format %>">
+            <small><%= question.created_at_format %></small>
+         </time>
+        </div>
+      </div>
     </div>
   </selection>
 
   <div class="card-body background-color-post-body">
-    <%= render "questions/upvote_link", question: question %>
-    <%= render "questions/votes_score", question: question %>
-    <%= render "questions/downvote_link", question: question %>
+    <div class='row'>
+      <div class='col'>
+        <h4><%= question.title %></h4>
 
-    <h4><%= question.title %></h4>
+        <section class="card-text">
+          <p class="my-2">
+            <%= truncate strip_tags(question.body), length: 150 %>
+          </p>
+        </section>
+      </div>
 
-    <section class="card-text">
-      <time datetime="<%= question.created_at_format %>">
-        <small><%= question.created_at_format %></small>
-      </time>
+    <% if current_user.present? %>
+      <div class='col right'>
+        <%= render "questions/upvote_link", question: question %>
+        <%= render "questions/votes_score", question: question %>
+        <%= render "questions/downvote_link", question: question %>
+      </div>
+    <% end %>
 
-      <p class="my-2">
-        <%= truncate strip_tags(question.body), length: 150 %>
-      </p>
-    </section>
-
+  </div>
     <div class="d-flex nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
       <%= link_to 'Show', question_path(question), class: 'btn btn-outline-primary m-1' %>
       <% if policy(question).edit? %>
