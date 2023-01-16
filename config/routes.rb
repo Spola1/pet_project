@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   resources :questions do
     resources :comments, only: %i[ create destroy ]
     resources :answers, exept: %i[ new show ]
+    member do
+      patch "upvote", to: "questions#upvote", format: :js
+      patch "downvote", to: "questions#downvote", format: :js
+    end
   end
 
   resources :answers, exept: %i[ new show ] do

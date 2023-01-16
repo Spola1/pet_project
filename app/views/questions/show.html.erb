@@ -1,30 +1,7 @@
 <% provide :page_title, "Question #{@question.id}" %>
 <% currently_at 'Questions' %>
 
-<h1 class="mb-4"><%= @question.title %></h1>
-
-<time datetime="<%= @question.created_at_format %>">
-  <%= @question.created_at_format %>
-</time>
-
-<p class="lead my-3">
-  <%= sanitize @question.body %>
-</p>
-
-<div class="mb-3">
-  <%= link_to image_tag(@question.user.gravatar_url, class: 'rounded m-1'), user_path(@question.user) %>
-  <%= link_to @question.user.nickname, user_path(@question.user) %>
-</div>
-
-<div class="d-flex nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-  <% if policy(@question).edit? %>
-    <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-outline-secondary m-1' %>
-  <% end %>
-  <% if policy(@question).destroy? %>
-    <%= button_to 'Destroy', question_path(@question), class: 'btn btn-outline-danger m-1',
-    data: { confirm: 'Are you sure?' }, method: :delete %>
-  <% end %>
-</div>
+<%= render @question %>
 
 <%= render 'comments/commentable', commentable: @question, comment: @comment,
   html_id: 'questionComments' %>
