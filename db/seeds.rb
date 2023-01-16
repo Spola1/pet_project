@@ -5,14 +5,8 @@ user2 = User.create(email:'1@1.ru', name:'Alex', nickname:'vasya',
 user3 = User.create(email:'admin@admin.com', name:'admin', nickname:'admin',
   password:'admin', password_confirmation:'admin', role: 'admin')
 
-40.times do
-  title = Faker::Hipster.word
-  body = "#{Faker::Lorem.paragraph(sentence_count: 5, supplemental: true, random_sentences_to_add: 4)} 
-    ##{Faker::Hipster.word} ##{Faker::Hipster.word}"
+40.times do |n|
+  title = "question_title_#{n}"
+  body = "question_body_#{n} #question_tag_#{rand(1..5)}"
   Question.create(title: title, body: body, user_id: user3.id, cached_votes_score: rand(2..15))
-end
-
-30.times do
-  title = Faker::Hipster.word
-  Tag.create title: title
 end
