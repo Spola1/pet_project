@@ -5,7 +5,6 @@ ruby '3.0.2'
 
 gem 'rails', '~> 7.0.4'
 gem 'sprockets-rails'
-gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
@@ -30,14 +29,24 @@ gem 'responders'
 gem 'active_model_serializers'
 gem 'doorkeeper'
 gem 'dotenv-rails'
+gem 'with_model'
+gem 'excon'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker', '~> 2'
   gem 'pry-rails'
   gem 'rubocop'
+  gem 'pg'
   gem 'rspec-rails'
   gem 'factory_bot'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
+end
+
+group :production do
+  gem 'faker', '~> 2'
+  gem 'pg'
 end
 
 group :development do

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :question do
-    title {"test#{rand(999)}"}
-    body {"test#{rand(999)}"}
-    user_id { create(:user).id }
+    title { "title_#{rand(999)}" }
+    body { "body_#{rand(999)}" }
+    user
   end
 end

@@ -25,7 +25,7 @@
     </tr>
   </thead>
   <tbody>
-    <%= render @users %>
+    <%= render @users.sort_by { |user| user.id } %>
   </tbody>
 </table>
 

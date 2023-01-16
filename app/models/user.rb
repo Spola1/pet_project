@@ -7,10 +7,11 @@ class User < ApplicationRecord
 
   attr_accessor :old_password, :admin_edit
 
-  has_many :questions
-  has_many :answers
-  has_many :todo_lists
-  has_many :todo_items
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :todo_lists, dependent: :destroy
+  has_many :todo_items, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_secure_password validations: false
 
@@ -20,6 +21,8 @@ class User < ApplicationRecord
                        length: { minimum: 3, maximum: 70 }
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
+  validates :name, presence: true
+  validates :nickname, presence: true, uniqueness: true
 
   def owner?(obj)
     obj.user == self

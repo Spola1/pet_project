@@ -13,9 +13,9 @@
 
   <% if current_user&.role == 'admin' %>
     <% if @user.banned == false %>
-    <%= button_to 'Ban', ban_user_path(@user), class: 'btn btn-danger', method: :put %>
+    <%= button_to 'Ban', ban_admin_user_path(@user), class: 'btn btn-danger', method: :put %>
     <% else %>
-      <%= button_to 'Unban', ban_user_path(@user), class: 'btn btn-warning', method: :put %>
+      <%= button_to 'Unban', ban_admin_user_path(@user), class: 'btn btn-warning', method: :put %>
     <% end %>
   <% end %>
 
@@ -24,7 +24,7 @@
       <% if @user.questions.any? %>
         <h3>User Questions: <%= @user.questions.count %></h3>
 
-        <div class="row mt-4">
+        <div class="row mt-4 mb-4">
           <%= render partial: 'questions/question', collection: @user.questions %>
         </div>
       <% end %>

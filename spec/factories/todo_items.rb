@@ -6,6 +6,7 @@ FactoryBot.define do
   factory :todo_item do
     content
     todo_list_id { create(:todo_list).id }
-    user_id { create(:user).id }
+    user
+    completed_at { nil }
   end
 end

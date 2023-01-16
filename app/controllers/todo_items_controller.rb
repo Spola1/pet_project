@@ -1,6 +1,8 @@
 class TodoItemsController < ApplicationController
   before_action :set_todo_list
   before_action :set_todo_item, except: [:create]
+  before_action :authorize_todo_item!
+  after_action :verify_authorized
 
   def create
     @todo_item = @todo_list.todo_items.create(todo_item_params)
@@ -9,6 +11,9 @@ class TodoItemsController < ApplicationController
     if @todo_item.save
       flash[:success] = 'Todo item created!'
       redirect_to(todo_list_path(@todo_list))
+    else
+      flash[:danger] = 'Todo item content can\'t be blank'
+      redirect_to(@todo_list)
     end
   end
 
@@ -25,7 +30,7 @@ class TodoItemsController < ApplicationController
     if @todo_item.destroy
       flash[:success] = 'Todo List item was deleted.'
     else
-      flash[:error] = 'Todo List item could not be deleted.'
+      flash[:danger] = 'Todo List item could not be deleted.'
     end
     redirect_to(@todo_list)
   end
@@ -42,5 +47,9 @@ class TodoItemsController < ApplicationController
 
   def set_todo_item
     @todo_item = @todo_list.todo_items.find(params[:id])
+  end
+
+  def authorize_todo_item!
+    authorize(@todo_item || TodoItem)
   end
 end

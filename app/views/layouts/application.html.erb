@@ -3,12 +3,15 @@
   <head>
     <meta charset="utf-8">
     <title><%= full_title(yield(:page_title)) %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body class="background-color-body">
