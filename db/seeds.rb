@@ -6,9 +6,10 @@ user3 = User.create(email:'admin@admin.com', name:'admin', nickname:'admin',
   password:'admin', password_confirmation:'admin', role: 'admin')
 
 40.times do
-  title = "question_title#{rand(999)}"
-  body = "question_body#{rand(999)}"
-  Question.create(title: title, body: body, user_id: user1.id)
+  title = Faker::Hipster.word
+  body = "#{Faker::Lorem.paragraph(sentence_count: 5, supplemental: true, random_sentences_to_add: 4)} 
+    ##{Faker::Hipster.word} ##{Faker::Hipster.word}"
+  Question.create(title: title, body: body, user_id: user3.id, cached_votes_score: rand(2..15))
 end
 
 30.times do
