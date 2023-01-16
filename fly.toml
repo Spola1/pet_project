@@ -1,6 +1,6 @@
-# fly.toml file generated for crimson-meadow-5541 on 2023-01-10T15:38:59+03:00
+# fly.toml file generated for polished-breeze-8524 on 2023-01-16T17:12:50+03:00
 
-app = "crimson-meadow-5541"
+app = "polished-breeze-8524"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
@@ -17,7 +17,6 @@ processes = []
   PORT = "8080"
 
 [experimental]
-  allowed_public_ports = []
   auto_rollback = true
 
 [[services]]
