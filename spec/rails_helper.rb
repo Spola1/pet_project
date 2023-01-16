@@ -2,7 +2,7 @@
 require 'spec_helper'
 require 'shoulda/matchers'
 require 'with_model'
-require 'support/controller_helpers.rb'
+require 'support/controller_helpers'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -13,8 +13,8 @@ require 'rspec/rails'
 RSpec.configure do |config|
   FactoryBot.reload
   config.include(FactoryBot::Syntax::Methods)
-  config.extend  WithModel
-  config.include ControllerHelpers, type: :controller
+  config.extend(WithModel)
+  config.include(ControllerHelpers, type: :controller)
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 
