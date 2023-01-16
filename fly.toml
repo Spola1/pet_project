@@ -1,6 +1,6 @@
-# fly.toml file generated for polished-breeze-8524 on 2023-01-16T17:12:50+03:00
+# fly.toml file generated for pet-project on 2023-01-17T01:19:51+03:00
 
-app = "polished-breeze-8524"
+app = "pet-project"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
