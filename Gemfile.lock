@@ -77,6 +77,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts_as_votable (0.14.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
@@ -146,6 +147,9 @@ GEM
     io-console (0.5.11)
     irb (1.4.1)
       reline (>= 0.3.0)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
     json (2.6.2)
@@ -311,6 +315,9 @@ GEM
     strscan (3.0.4)
     thor (1.2.1)
     timeout (0.3.0)
+    turbolinks (5.2.1)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.3.0)
@@ -335,6 +342,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activerecord-import
+  acts_as_votable
   bcrypt
   blueprinter
   bootsnap
@@ -350,6 +358,7 @@ DEPENDENCIES
   factory_bot
   faker (~> 2)
   gravtastic
+  jbuilder (~> 2.7)
   jsbundling-rails
   kaminari (~> 1.2)
   letsrate
@@ -369,6 +378,7 @@ DEPENDENCIES
   rubyzip
   shoulda-matchers
   sprockets-rails
+  turbolinks (~> 5)
   tzinfo-data
   valid_email2
   web-console

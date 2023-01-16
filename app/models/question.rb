@@ -2,6 +2,8 @@ class Question < ApplicationRecord
   include Commentable
   include Ownership
 
+  acts_as_votable
+
   has_many :answers, dependent: :destroy
   belongs_to :user
   has_many :question_tags, dependent: :destroy

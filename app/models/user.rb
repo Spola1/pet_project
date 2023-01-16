@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   include Gravtastic
 
+  acts_as_voter
+
   enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
 
   gravtastic(secure: true, filetype: :png, size: 40, default: 'retro')

@@ -31,6 +31,9 @@ gem 'doorkeeper'
 gem 'dotenv-rails'
 gem 'with_model'
 gem 'excon'
+gem 'acts_as_votable'
+gem 'turbolinks', '~> 5'
+gem 'jbuilder', '~> 2.7'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]

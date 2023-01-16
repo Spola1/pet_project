@@ -1,0 +1,10 @@
+<%= content_tag "div", id: "upvote-#{question.id}" do %>
+  <%= link_to upvote_question_path(question), method: :patch, remote: true,
+    data: { disable_with: "voting..." } do %>
+    <% if current_user.voted_up_on? question %>
+      unvote
+    <% else %>
+      vote!
+    <% end %>
+  <% end %>
+<% end %>
