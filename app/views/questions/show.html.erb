@@ -19,8 +19,7 @@
     <%= pagination @pagy %>
   </div>
 
-    <%= render partial: 'answers/answer', collection: @answers,
-      as: :answer, locals: { question: @question } %>
+    <%= render @answers %>
 
   <div class="mt-3">
     <%= pagination @pagy %>
