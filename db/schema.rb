@@ -173,8 +173,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_161828) do
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "qs", "answers"
-  add_foreign_key "question_tags", "questions"
-  add_foreign_key "question_tags", "tags"
+  add_foreign_key "question_tags", "questions", on_delete: :cascade
+  add_foreign_key "question_tags", "tags", on_delete: :cascade
   add_foreign_key "questions", "users"
   add_foreign_key "todo_items", "todo_lists"
   add_foreign_key "todo_items", "users"

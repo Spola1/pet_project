@@ -7,7 +7,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   belongs_to :user
   has_many :question_tags, dependent: :destroy
-  has_many :tags, through: :question_tags, dependent: :destroy
+  has_many :tags, through: :question_tags
 
   validates :title, presence: true, length: { minimum: 5 }
   validates :body, presence: true, length: { minimum: 5 }
