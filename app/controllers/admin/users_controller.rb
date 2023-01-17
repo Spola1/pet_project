@@ -73,7 +73,7 @@ module Admin
 
     def user_params
       params.require(:user).permit(:email, :name, :nickname, :password,
-                                   :password_confirmation, :role).merge(admin_edit: true)
+                                   :password_confirmation).merge(admin_edit: true)
     end
   end
 end
