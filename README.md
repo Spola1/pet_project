@@ -1,4 +1,4 @@
-https://polished-breeze-8524.fly.dev/
+https://pet-project.fly.dev/
 
 login: admin@admin.com
 

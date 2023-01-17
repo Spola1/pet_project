@@ -1,4 +1,4 @@
-# fly.toml file generated for pet-project on 2023-01-17T01:19:51+03:00
+# fly.toml file generated for pet-project on 2023-01-17T12:05:52+03:00
 
 app = "pet-project"
 kill_signal = "SIGINT"

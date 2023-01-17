@@ -1,5 +1,5 @@
 class Api::V1::ApplicationController < Api::ApplicationController
-  before_action :doorkeeper_authorize!
+  # before_action :doorkeeper_authorize!
 
   def build_meta(collection)
     {
