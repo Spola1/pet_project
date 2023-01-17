@@ -1,7 +1,11 @@
 <% is_current_comment = comment&.for?(commentable) %>
 <% comment_builder = is_current_comment ? comment : commentable.comments.build %>
 
-<h2>Comments:</h2>
+<% if commentable == @question %>
+  <h2>Question comments:</h2>
+<% else %>
+  <h2>Answer comments:</h2>
+<% end %>
 
 <% if policy(comment_builder).create? %>
   <%= form_with model: [commentable, comment_builder],

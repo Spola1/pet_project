@@ -12,10 +12,10 @@ class AnswerPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin_role? || user.moderator_role? || user.owner?(record)
+    user.present? && (user.owner?(record) || user.admin_role? || user.moderator_role?)
   end
 
   def destroy?
-    user.admin_role? || user.owner?(record)
+    user.present? && (user.admin_role? || user.owner?(record))
   end
 end

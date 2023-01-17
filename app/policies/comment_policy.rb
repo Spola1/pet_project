@@ -16,6 +16,6 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin_role? || user.owner?(record)
+    user.present? && (user.admin_role? || user.owner?(record))
   end
 end
