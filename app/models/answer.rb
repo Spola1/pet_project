@@ -13,8 +13,4 @@ class Answer < ApplicationRecord
   def created_at_format
     created_at.strftime('%Y-%m-%d %H:%M:%S')
   end
-
-  def answers_order
-    question.answers.order(cached_votes_score: :desc)
-  end
 end
