@@ -1,6 +1,8 @@
 <% provide :page_title, "Question #{@question.id}" %>
 <% currently_at 'Questions' %>
 
+<%= link_to "Back to questions page", questions_path, class: 'btn btn-primary btn-lg mb-1' %>
+
 <%= render @question %>
 
 <% if @question.comments.size > 0 || current_user.present? %>
