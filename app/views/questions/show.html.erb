@@ -4,16 +4,15 @@
 <%= render @question %>
 
 <% if @question.comments.size > 0 || current_user.present? %>
-  <%= render 'comments/commentable', commentable: @question, comment: @comment,
-    html_id: 'questionComments' %>
+  <h3 class="mt-3">Question comments</h3>
+
+  <%= render 'comments/commentable', commentable: @question, comment: @comment %>
 <% end %>
 
-<hr class="my-3">
+<% if @question.comments.size > 0 || current_user.present? %>
+  <h3 class="mt-3">Answers</h3>
 
-<% if @question.answers.size > 1 || current_user.present? %>
   <%= render 'answers/form' %>
-
-  <h2 class="mt-5">Answers:</h2>
 
   <div class="mt-3">
     <%= pagination @pagy %>

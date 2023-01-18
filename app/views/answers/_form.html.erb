@@ -1,9 +1,8 @@
 <%= render 'shared/errors', object: @answer %>
 
 <% if policy(@answer).create? %>
-  <h2>Your answer</h2>
   <%= form_with model: [@question, @answer] do |form| %>
-    <div class="mb-3 row">
+    <div class="row">
       <div class="col-sm-2 col-form-label">
         <%= form.label :Your_answer %>
       </div>
@@ -13,6 +12,6 @@
       </div>
     </div>
 
-    <%= form.submit "Submit answer!", class: 'btn btn-primary' %>
+    <%= form.submit "Submit answer!", class: 'btn btn-primary mb-3' %>
   <% end %>
 <% end %>
