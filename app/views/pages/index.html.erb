@@ -17,3 +17,9 @@
       class: 'btn-font-size nav-link px-2 m-2' %></div>
   </div>
 </div>
+
+
+<%= User.all.left_outer_joins(:questions).distinct.select('users.*, COUNT(questions.*) AS questions_count').group('users.id') %>
+
+<% User.left_outer_joins(:questions).select('users.*, count(questions.id) as questions_count').group('users.id')  %>
+
