@@ -16,18 +16,30 @@
   </selection>
 
   <div class="card-body background-color-post-body">
-    <section class="card-text p-3">
-      <div class="my-2">
-        <h6><%= sanitize answer.body %></h6>
+    <div class='row'>
+      <div class='col'>
+        <section class="card-text p-3">
+          <div class="my-2">
+            <h6><%= sanitize answer.body %></h6>
+          </div>
+        </section>
       </div>
-    </section>
+
+      <% if current_user.present? %>
+        <div class='col right'>
+          <%= render "answers/upvote_link", answer: answer %>
+          <%= render "answers/votes_score", answer: answer %>
+          <%= render "answers/downvote_link", answer: answer %>
+        </div>
+      <% end %>
+    </div>
 
     <div class="d-flex nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
       <% if policy(answer).edit? %>
-        <%= link_to 'Edit', edit_question_answer_path(question, answer), class: 'btn btn-outline-secondary m-1' %>
+        <%= link_to 'Edit', edit_question_answer_path(@question, answer), class: 'btn btn-outline-secondary m-1' %>
       <% end %>
       <% if policy(answer).destroy? %>
-        <%= button_to 'Delete', question_answer_path(question, answer), class: 'btn btn-outline-danger m-1',
+        <%= button_to 'Delete', question_answer_path(@question, answer), class: 'btn btn-outline-danger m-1',
         data: { confirm: "Are you sure?"}, method: :delete %>
       <% end %>
     </div>

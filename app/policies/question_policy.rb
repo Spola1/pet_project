@@ -18,4 +18,12 @@ class QuestionPolicy < ApplicationPolicy
   def destroy?
     user.present? && (user.admin_role? || user.owner?(record))
   end
+
+  def upvote?
+    user.present? && user.banned != true
+  end
+
+  def downvote?
+    user.present? && user.banned != true
+  end
 end

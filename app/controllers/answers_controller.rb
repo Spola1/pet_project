@@ -36,6 +36,26 @@ class AnswersController < ApplicationController
     end
   end
 
+  def upvote
+    @answer = @question.answers.find(params[:id])
+    if current_user.voted_up_on?(@answer)
+      @answer.unvote_by(current_user)
+    else
+      @answer.upvote_by(current_user)
+    end
+    render('answers/vote')
+  end
+
+  def downvote
+    @answer = @question.answers.find(params[:id])
+    if current_user.voted_down_on?(@answer)
+      @answer.unvote_by(current_user)
+    else
+      @answer.downvote_by(current_user)
+    end
+    render('answers/vote')
+  end
+
   private
 
   def answer_params
