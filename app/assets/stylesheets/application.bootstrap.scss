@@ -224,6 +224,15 @@ input[type="submit"] {
   }
 }
 
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 50vh;
+}
+
 ::-webkit-input-placeholder { color: $dark; }
 
 @media only screen and (max-width: 400px) {

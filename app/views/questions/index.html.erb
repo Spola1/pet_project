@@ -1,11 +1,15 @@
 <% provide :page_title, 'Questions' %>
 <% currently_at 'Questions' %>
 
-<h1 class="mb-4">Questions</h1>
+<h1 class="mb-2">Questions</h1>
 
 <% if policy(:question).new? %>
-  <%= link_to 'New question', new_question_path, class: 'btn btn-primary btn-lg' %>
+  <%= link_to 'New question', new_question_path, class: 'btn btn-primary btn-lg mb-1' %>
 <% end %>
+
+<div>
+  <%= link_to "Back to home page", root_path, class: 'btn btn-primary btn-lg mb-1' %>
+</div>
 
 <div class="mt-3">
   <%= pagination @pagy %>

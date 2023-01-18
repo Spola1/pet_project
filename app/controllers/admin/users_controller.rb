@@ -8,7 +8,8 @@ module Admin
     def index
       respond_to do |format|
         format.html do
-          @pagy, @users = pagy(User.order(created_at: :desc))
+          @pagy, @users = pagy(User.all.left_outer_joins(:questions).distinct.select('users.*, COUNT(questions.*) 
+            AS questions_count').group('users.id'))
         end
 
         format.zip { respond_with_zipped_users }

@@ -1,0 +1,25 @@
+<% provide :page_title, 'Weather' %>
+<% currently_at 'Weather' %>
+
+<div class="center-screen">
+  <h2 class="text-center">Search for world weather by location</h2>
+
+  <%= form_with(url: weather_path, method: "get", local: true) do %>
+    <%= text_field_tag :location, nil, placeholder: "Enter Location name..." %>
+    <%= submit_tag("Search") %>
+    <div class="links todo_list_title">
+      <%= link_to "Back to home page", root_path %>
+    </div>
+  <% end %>
+
+  <% if @response %>
+    <div class="mt-2">
+      <h2>City name: <%= @response["name"] %><h2>
+      <h2>Current weather: <%= (@response["main"]["temp"]-272.1).round(2) %> °C<h2>
+      <h2>Feels like: <%= (@response["main"]["feels_like"]-272.1).round(2) %> °C<h2>
+    </div>
+    <div class="links todo_list_title">
+      <%= link_to "Refresh", weather_path %>
+    </div>
+  <% end %>
+</div>

@@ -35,6 +35,8 @@ gem 'acts_as_votable'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'font-awesome-rails'
+gem "httparty"
+gem "bootsnap", require: false
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
