@@ -19,7 +19,7 @@
     <%= pagination @pagy %>
   </div>
 
-    <%= render @answers %>
+    <%= render @answers.sort_by { |answer| answer.cached_votes_score }.reverse %>
 
   <div class="mt-3">
     <%= pagination @pagy %>

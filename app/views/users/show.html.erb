@@ -24,6 +24,6 @@
   <h3 class="mt-3 text-center">User Questions: <%= @user.questions.count %></h3>
 
   <div class="pb-3">
-    <%= render @user.questions %>
+    <%= render @user.questions.sort_by { |question| question.cached_votes_score }.reverse %>
   </div>
 <% end %>
