@@ -49,4 +49,9 @@ Rails.application.routes.draw do
       resources :questions
     end
   end
+
+  controller :qr_codes do
+    get :qr_code_generator
+    get :qr_code_download
+  end
 end
