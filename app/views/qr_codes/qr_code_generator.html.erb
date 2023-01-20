@@ -7,8 +7,7 @@
 
   <%= form_tag :qr_code_download, method: :get do |f| %>
     <div class="field">
-      <%= label_tag 'Text or URL' %>
-      <%= text_field_tag :content, nil, required: true %>
+      <%= text_field_tag :content, nil, placeholder: "Text or URL..." %>
     </div>
 
     <div class="actions">
