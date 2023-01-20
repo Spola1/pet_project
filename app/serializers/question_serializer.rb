@@ -1,5 +1,3 @@
 class QuestionSerializer < ApplicationSerializer
-  attributes :id, :title, :body, :answers
-
-  has_many :answers
+  attributes :id, :answers
 end

@@ -55,7 +55,6 @@ describe 'Users API', type: :request do
         expect(json['id']).to(eq(me.id))
         expect(json['nickname']).to(eq(me.nickname))
         expect(json['email']).to(eq(me.email))
-        expect(json['name']).to(eq(me.name))
       end
     end
 
@@ -75,7 +74,6 @@ describe 'Users API', type: :request do
         expect(json['id']).to(eq(user_2.id))
         expect(json['nickname']).to(eq(user_2.nickname))
         expect(json['email']).to(eq(user_2.email))
-        expect(json['name']).to(eq(user_2.name))
       end
     end
   end

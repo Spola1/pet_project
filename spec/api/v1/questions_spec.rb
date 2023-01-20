@@ -54,8 +54,7 @@ describe 'Questions API', type: :request do
       it 'returns all public fields' do
         json = JSON.parse(response.body)
         expect(json['id']).to(eq(question.id))
-        expect(json['title']).to(eq(question.title))
-        expect(json['body']).to(eq(question.body))
+        expect(json['answers']).to(eq(question.answers))
       end
     end
   end
