@@ -2,8 +2,8 @@ class QuestionsController < ApplicationController
   include QuestionsAnswers
   before_action :require_authentication, only: [:destroy, :update, :edit]
   before_action :set_question, only: [:show, :destroy, :edit, :update]
-  #before_action :authorize_question!
-  #after_action :verify_authorized
+  # before_action :authorize_question!
+  # after_action :verify_authorized
 
   def index # n+1 includes(:user) includes(:tags)
     @pagy, @questions = pagy(Question.includes(:user).includes(:tags).order(cached_votes_score: :desc))

@@ -87,6 +87,9 @@ GEM
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bullet (7.0.7)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     carrierwave (2.2.2)
       activemodel (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -335,6 +338,7 @@ GEM
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.3.0)
+    uniform_notifier (1.16.0)
     valid_email2 (4.0.4)
       activemodel (>= 3.2)
       mail (~> 2.5)
@@ -360,6 +364,7 @@ DEPENDENCIES
   bcrypt
   blueprinter
   bootsnap
+  bullet
   carrierwave
   caxlsx
   caxlsx_rails
