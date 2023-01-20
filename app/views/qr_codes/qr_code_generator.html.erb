@@ -3,15 +3,13 @@
 
 <div class="center-screen">
 
-  <h1>QR code generator</h1>
+  <h1 class="text-center">QR code generator</h1>
 
   <%= form_tag :qr_code_download, method: :get do |f| %>
-    <div class="field">
-      <%= text_field_tag :content, nil, placeholder: "Text or URL..." %>
-    </div>
-
-    <div class="actions">
-      <%= submit_tag 'Generate' %>
+    <%= text_field_tag :content, nil, placeholder: "Enter text or URL..." %>
+    <%= submit_tag 'Generate' %>
+    <div class="links todo_list_title">
+      <%= link_to "Back to home page", root_path %>
     </div>
   <% end %>
 </div>

@@ -13,10 +13,12 @@
   <%= link_to 'Delete', admin_user_path(user), class: 'btn btn-danger',
     data: {method: :delete, confirm: 'Are you sure?'} %>
 
-  <% if user.banned == false %>
-    <%= link_to 'Ban', ban_admin_user_path(user), class: 'btn btn-danger', method: :put %>
-  <% else %>
-    <%= link_to 'Unban', ban_admin_user_path(user), class: 'btn btn-warning', method: :put %>
+  <% if user.role != 'admin' %>
+    <% if user.banned == false %>
+      <%= link_to 'Ban', ban_admin_user_path(user), class: 'btn btn-danger', method: :put %>
+    <% else %>
+      <%= link_to 'Unban', ban_admin_user_path(user), class: 'btn btn-warning', method: :put %>
+    <% end %>
   <% end %>
   </td>
 </tr>
