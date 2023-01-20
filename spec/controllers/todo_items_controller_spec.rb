@@ -4,6 +4,7 @@ RSpec.describe(TodoItemsController, type: :controller) do
   let(:todo_list)  { create(:todo_list) }
   let(:todo_item)  { create(:todo_item) }
   let(:user)       { create(:user) }
+  let(:todo_list_with_todo_items) { create(:todo_list_with_todo_items) }
 
   describe 'POST #create' do
     context 'Authorized todo list author' do
@@ -43,5 +44,4 @@ RSpec.describe(TodoItemsController, type: :controller) do
       end
     end
   end
-
 end
