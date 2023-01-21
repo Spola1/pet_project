@@ -1,0 +1,8 @@
+<% provide :page_title, 'Weather' %>
+<% currently_at 'Weather' %>
+
+<div class="center-screen">
+  <h2 class="text-center">Search for world weather by location</h2>
+
+  <%= render "form", search_temperature: @search_temperature %>
+</div>

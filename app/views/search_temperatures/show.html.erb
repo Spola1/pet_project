@@ -1,0 +1,17 @@
+<% provide :page_title, 'Weather' %>
+<% currently_at 'Weather' %>
+
+<div class="center-screen">
+  <h2>Weather data<h2>
+
+  <hr>
+
+  <h2>City name: <%= @search_temperature.location %><h2>
+  <h2>Current weather: <%= (@search_temperature.temp.to_i-272.1).round(2) %> °C<h2>
+  <h2>Feels like: <%= (@search_temperature.feels_like.to_i-272.1).round(2) %> °C<h2>
+</div>
+
+<div class="links todo_list_title">
+  <%= link_to "Refresh", new_search_temperature_path %> |
+  <%= link_to "Home page", root_path %>
+</div>

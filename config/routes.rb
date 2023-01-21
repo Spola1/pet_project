@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/weather' => 'weather#index', :as => 'weather'
+  resources :search_temperatures
   use_doorkeeper
   resource :session, only: %i[ new create destroy ]
 

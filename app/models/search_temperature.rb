@@ -1,0 +1,2 @@
+class SearchTemperature < ApplicationRecord
+end

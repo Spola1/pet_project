@@ -1,0 +1,24 @@
+<%= form_with(model: search_temperature) do |form| %>
+  <% if search_temperature.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(search_temperature.errors.count, "error") %> prohibited this search_temperature from being saved:</h2>
+
+      <ul>
+        <% search_temperature.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.text_field :location,  placeholder: "Enter Location name..." %>
+  </div>
+
+  <div>
+    <%= form.submit 'Search' %>
+  </div>
+<% end %>
+<div class="links todo_list_title">
+  <%= link_to "Home page", root_path %>
+</div>

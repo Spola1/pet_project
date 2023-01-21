@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_17_105936) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_21_035507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -118,6 +118,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_105936) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "search_temperatures", force: :cascade do |t|
+    t.string "temp"
+    t.string "location"
+    t.string "feels_like"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -153,6 +161,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_105936) do
     t.datetime "updated_at", null: false
     t.integer "role", default: 0, null: false
     t.boolean "banned", default: false
+    t.string "uid"
+    t.string "provider"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["nickname"], name: "index_users_on_nickname", unique: true
     t.index ["role"], name: "index_users_on_role"
