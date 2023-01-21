@@ -19,9 +19,9 @@ class SearchTemperaturesController < ApplicationController
     @search_temperature = SearchTemperature.create(temp: response['main']['temp'],
     location: search_temperature_params[:location], feels_like: response['main']['feels_like'])
    
-    @search_temperature.save
+    if @search_temperature.save
       redirect_to search_temperature_path(@search_temperature)
-
+    end
   end
 
   private
