@@ -16,6 +16,12 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  config.action_mailer.delivery_method = :letter_opener
+
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.default_url_options = { host: 'https://pet-project.fly.dev/' }
+
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
@@ -90,4 +96,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.active_job.queue_adapter = :sidekiq
 end

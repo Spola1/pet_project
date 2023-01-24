@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Gravtastic
+  include Recoverable
 
   acts_as_voter
 
