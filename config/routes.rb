@@ -1,9 +1,21 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
+
+  root 'pages#index'
+
+  resources :tags, only: %i[ show ]
+
   resources :search_temperatures
+  
   use_doorkeeper
+
   resource :session, only: %i[ new create destroy ]
 
   resources :users, except: %i[ index ]
+
+  resource :password_reset, only: %i[new create edit update]
   
   resources :todo_lists do
     resources :todo_items do
@@ -36,10 +48,6 @@ Rails.application.routes.draw do
       put 'ban', on: :member
     end
   end
-
-  resources :tags, only: %i[ show ]
-
-  root 'pages#index'
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do

@@ -36,16 +36,16 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'font-awesome-rails'
 gem 'httparty'
-gem 'bootsnap', require: false
 gem 'rqrcode'
 gem 'rqrcode_png'
+gem 'sidekiq'
+gem 'redis'
+gem 'faker', '~> 2'
 
 group :development, :test do
   gem 'debug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'faker', '~> 2'
   gem 'pry-rails'
   gem 'rubocop'
-  gem 'pg'
   gem 'rspec-rails'
   gem 'factory_bot'
   gem 'shoulda-matchers'
@@ -53,7 +53,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'faker', '~> 2'
   gem 'pg'
 end
 

@@ -1,0 +1,20 @@
+<% provide :page_title, 'Reset password' %>
+<% currently_at 'Reset password' %>
+
+<h1 class="mb-4">Reset password page</h1>
+
+<%= form_with url: password_reset_path do |f| %>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :email, 'Email' %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.email_field :email, value: params[:email],
+        class: 'form-control form-control-lg', required: true %>
+    </div>
+  </div>
+
+  <%= f.submit 'Submit', class: 'btn btn-primary btn-lg' %>
+  <%= link_to 'Back to Log in', new_session_path, class: 'btn btn-secondary' %>
+<% end %>
