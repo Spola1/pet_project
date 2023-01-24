@@ -9,7 +9,8 @@ class PasswordResetsController < ApplicationController
     if @user.present?
       @user.set_password_reset_token
 
-      PasswordResetMailer.with(user: @user).reset_email.deliver_later
+      # PasswordResetMailer.with(user: @user).reset_email.deliver_later (ex sidekiq)
+      PasswordResetMailer.with(user: @user).reset_email.deliver_now
       flash[:success] = 'The email has been sent to the specified email address'
       redirect_to new_session_path
     else

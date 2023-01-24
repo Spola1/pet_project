@@ -37,7 +37,8 @@ class QuestionsController < ApplicationController
   def create
     @question = current_user.questions.build(question_params)
 
-    QuestionCreateJob.perform_later(10)
+    # example 4 sidekiq
+    # QuestionCreateJob.perform_later(10)
     
     if @question.save
       flash[:success] = 'Question created!'
