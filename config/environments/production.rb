@@ -16,19 +16,21 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.default_url_options = { host: 'https://pet-project.fly.dev/' }
+  config.action_mailer.default_url_options = { host: 'pet-project.fly.dev', protocol: 'https' }
 
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'https://pet-project.fly.dev/',
-    user_name:            "#{ENV['GMAIL_USERNAME']}",
-    password:             "#{ENV['GMAIL_PASSWORD']}",
+    domain:               'pet-project.fly.dev/',
+    user_name:            Rails.application.credentials.dig(:google_smtp, :email),
+    password:             Rails.application.credentials.dig(:google_smtp, :password),
     authentication:       'plain',
     enable_starttls_auto: true  
  }
