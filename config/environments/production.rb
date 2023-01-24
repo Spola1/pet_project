@@ -28,9 +28,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'pet-project.fly.dev/',
-    user_name:            Rails.application.credentials.dig(:google_smtp, :email),
-    password:             Rails.application.credentials.dig(:google_smtp, :password),
+    domain:               'pet-project.fly.dev',
+    user_name:            "#{ENV['GMAIL_USERNAME']}",
+    password:             "#{ENV['GMAIL_PASSWORD']}",
     authentication:       'plain',
     enable_starttls_auto: true  
  }
