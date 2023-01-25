@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
     @answer.user = current_user
 
     if @answer.save
+      notify_question_author(@question, @answer)
       flash[:success] = 'Answer created!'
       redirect_to(question_path(@question))
     else
@@ -72,5 +73,9 @@ class AnswersController < ApplicationController
 
   def authorize_answer!
     authorize(@answer || Answer)
+  end
+
+  def notify_question_author(question, answer)
+    QuestionMailer.answer(answer).deliver_now unless question.user == answer.user
   end
 end

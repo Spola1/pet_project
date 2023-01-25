@@ -2,13 +2,14 @@ class CommentsController < ApplicationController
   include QuestionsAnswers
   before_action :set_commentable
   before_action :set_question
-  before_action :authorize_comment!
-  after_action :verify_authorized
+  before_action :authorize_user, only: [:destroy]
 
   def create
     @comment = @commentable.comments.build(comment_params)
+    @comment.user = current_user
 
     if @comment.save
+      notify_commentable_author(@commentable, @comment)
       flash[:success] = 'Comment created!'
       redirect_to(question_path(@question))
     else
@@ -27,8 +28,16 @@ class CommentsController < ApplicationController
 
   private
 
+  def authorize_user
+    @comment = Comment.find(params[:id])
+    unless current_user.present? && (current_user == @comment.user || current_user.role == 'admin')
+      flash[:danger] = 'You are not authorized to perform this action!'
+      redirect_to(request.referer || root_path)
+    end
+  end
+
   def comment_params
-    params.require(:comment).permit(:body).merge(user: current_user)
+    params.require(:comment).permit(:body)
   end
 
   def set_commentable
@@ -42,7 +51,11 @@ class CommentsController < ApplicationController
     @question = @commentable.is_a?(Question) ? @commentable : @commentable.question
   end
 
-  def authorize_comment!
-    authorize(@comment || Comment)
+  def notify_commentable_author(commentable, comment)
+    if comment.commentable_type == 'Question'
+      QuestionMailer.commentable(comment).deliver_now unless @commentable.user == comment.user
+    else 
+      AnswerMailer.commentable(comment).deliver_now unless @commentable.user == comment.user
+    end
   end
 end

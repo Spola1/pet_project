@@ -20,7 +20,7 @@
         <p>
           <%= sanitize comment.body %>
         </p>
-        <% if policy(comment).destroy? %>
+        <% if current_user.present? && (current_user == comment.user || current_user.role == 'admin') %>
           <%= button_to 'Delete',
             polymorphic_path([comment.commentable, comment]),
             class: 'btn btn-danger btn-sm', method: :delete %>
