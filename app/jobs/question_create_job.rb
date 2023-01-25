@@ -2,6 +2,6 @@ class QuestionCreateJob < ApplicationJob
   queue_as :default
 
   def perform(time)
-    sleep time
+    sleep(time)
   end
 end

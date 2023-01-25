@@ -1,10 +1,10 @@
 class PasswordResetsController < ApplicationController
   before_action :require_no_authentication
-  before_action :check_user_params, only: %i[edit update]
-  before_action :set_user, only: %i[edit update]
+  before_action :check_user_params, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update]
 
   def create
-    @user = User.find_by email: params[:email]
+    @user = User.find_by(email: params[:email])
 
     if @user.present?
       @user.set_password_reset_token
@@ -12,21 +12,21 @@ class PasswordResetsController < ApplicationController
       # PasswordResetMailer.with(user: @user).reset_email.deliver_later (ex sidekiq)
       PasswordResetMailer.with(user: @user).reset_email.deliver_now
       flash[:success] = 'The email has been sent to the specified email address'
-      redirect_to new_session_path
+      redirect_to(new_session_path)
     else
       flash[:danger] = 'User not found'
-      render :new
+      render(:new)
     end
   end
 
   def edit; end
 
   def update
-    if @user.update user_params
+    if @user.update(user_params)
       flash[:success] = 'Password updated'
-      redirect_to new_session_path
+      redirect_to(new_session_path)
     else
-      render :edit
+      render(:edit)
     end
   end
 
@@ -41,8 +41,8 @@ class PasswordResetsController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by email: params[:user][:email],
-                         password_reset_token: params[:user][:password_reset_token]
+    @user = User.find_by(email: params[:user][:email],
+                         password_reset_token: params[:user][:password_reset_token])
 
     redirect_to(new_session_path, flash: { warning: 'Token has expired, try again' }) unless @user&.password_reset_period_valid?
   end

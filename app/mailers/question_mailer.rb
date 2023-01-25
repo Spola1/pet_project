@@ -4,7 +4,7 @@ class QuestionMailer < ApplicationMailer
     @commentable = comment.commentable
     @comment_user = comment.user.name
 
-    mail to: @commentable.user.email, subject: 'Pet project'
+    mail(to: @commentable.user.email, subject: 'Pet project')
   end
 
   def answer(answer)
@@ -12,6 +12,6 @@ class QuestionMailer < ApplicationMailer
     @question = answer.question
     @answer_user = answer.user.name
 
-    mail to: @question.user.email, subject: 'Pet project'
+    mail(to: @question.user.email, subject: 'Pet project')
   end
 end

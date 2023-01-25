@@ -51,10 +51,10 @@ class CommentsController < ApplicationController
     @question = @commentable.is_a?(Question) ? @commentable : @commentable.question
   end
 
-  def notify_commentable_author(commentable, comment)
+  def notify_commentable_author(_commentable, comment)
     if comment.commentable_type == 'Question'
       QuestionMailer.commentable(comment).deliver_now unless @commentable.user == comment.user
-    else 
+    else
       AnswerMailer.commentable(comment).deliver_now unless @commentable.user == comment.user
     end
   end

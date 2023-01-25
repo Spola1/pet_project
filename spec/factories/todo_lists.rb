@@ -11,7 +11,6 @@ FactoryBot.define do
     title
     description
     user
-  
 
     factory :todo_list_with_todo_items do
       transient do

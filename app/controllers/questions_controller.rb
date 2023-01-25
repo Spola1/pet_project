@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
 
     # example 4 sidekiq
     # QuestionCreateJob.perform_later(10)
-    
+
     if @question.save
       flash[:success] = 'Question created!'
       redirect_to(question_path(@question))
