@@ -54,7 +54,13 @@ describe 'Questions API', type: :request do
       it 'returns all public fields' do
         json = JSON.parse(response.body)
         expect(json['id']).to(eq(question.id))
+        expect(json['title']).to(eq(question.title))
+        expect(json['body']).to(eq(question.body))
+        expect(json['created_at'].to_date).to(eq(question.created_at.to_date))
+        expect(json['updated_at'].to_date).to(eq(question.updated_at.to_date))
         expect(json['answers']).to(eq(question.answers))
+        expect(json['user_id']).to(eq(question.user.id))
+        expect(json['comments']).to(eq(question.comments))
       end
     end
   end
