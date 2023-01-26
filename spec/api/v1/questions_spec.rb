@@ -4,7 +4,14 @@ describe 'Questions API', type: :request do
   let(:headers) do
     { "CONTENT_TYPE": 'application/json',
       "ACCEPT": 'application/json' }
-  end
+    end
+
+  let(:question_headers) do
+    { "CONTENT_TYPE": 'application/json',
+      "ACCEPT": 'application/json',
+      "title": 'test test',
+      "body": 'test test' }
+    end
 
   describe 'GET /api/v1/questions' do
     context 'unauthorized' do
@@ -61,6 +68,42 @@ describe 'Questions API', type: :request do
         expect(json['answers']).to(eq(question.answers))
         expect(json['user_id']).to(eq(question.user.id))
         expect(json['comments']).to(eq(question.comments))
+      end
+    end
+  end
+
+  describe "POST api/v1/questions" do
+    context 'authorized with valid params' do
+      let(:resource_owner) { create(:user) }
+      let(:access_token) { create(:access_token, resource_owner_id: resource_owner.id) }
+
+      it 'returns all public fields' do
+        post '/api/v1/questions', params: { access_token: access_token.token, title: 'test test', body: 'test test' }
+        expect(JSON.parse(response.body)['title']).to eq('test test')
+        expect(JSON.parse(response.body)['body']).to eq('test test')
+        expect(JSON.parse(response.body)['user_id']).to eq(resource_owner.id)
+      end
+    end
+
+    context 'authorized with invalid params' do
+      let(:resource_owner) { create(:user) }
+      let(:access_token) { create(:access_token, resource_owner_id: resource_owner.id) }
+
+      it 'returns all public fields' do
+        post '/api/v1/questions', params: { access_token: access_token.token, title: 'test', body: 'test' }
+        expect(JSON.parse(response.body)).to eq({"errors"=>{"body"=>["is too short (minimum is 5 characters)"], "title"=>["is too short (minimum is 5 characters)"]}})
+      end
+    end
+
+    context 'unauthorized' do
+      it 'returns 401 status if there is no access_token' do
+        post '/api/v1/questions', params: { title: 'test test', body: 'test test' }
+        expect(response.status).to(eq(401))
+      end
+
+      it 'returns 401 status if access_token is invalid' do
+        post '/api/v1/questions', params: { access_token: '123', title: 'test test', body: 'test test' }
+        expect(response.status).to(eq(401))
       end
     end
   end
