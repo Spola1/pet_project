@@ -17,23 +17,23 @@ class Api::V1::QuestionsController < Api::V1::ApplicationController
     question = current_resource_owner.questions.build(question_params)
 
     if question.save
-      render json: question
+      render(json: question)
     else
-      render json: { errors: question.errors }
+      render(json: { errors: question.errors })
     end
   end
 
   def destroy
     questions = Question.all
     @question.destroy
-    render json: questions
+    render(json: questions)
   end
 
   def update
     if @question.update(question_params)
-      render json: @question
+      render(json: @question)
     else
-      render json: { errors: @question.errors }
+      render(json: { errors: @question.errors })
     end
   end
 

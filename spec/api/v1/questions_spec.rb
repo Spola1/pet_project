@@ -4,7 +4,7 @@ describe 'Questions API', type: :request do
   let(:headers) do
     { "CONTENT_TYPE": 'application/json',
       "ACCEPT": 'application/json' }
-    end
+  end
 
   describe 'GET /api/v1/questions' do
     context 'unauthorized' do
@@ -65,16 +65,16 @@ describe 'Questions API', type: :request do
     end
   end
 
-  describe "POST api/v1/questions" do
+  describe 'POST api/v1/questions' do
     context 'authorized with valid params' do
       let(:resource_owner) { create(:user) }
       let(:access_token) { create(:access_token, resource_owner_id: resource_owner.id) }
 
       it 'returns all public fields' do
         post '/api/v1/questions', params: { access_token: access_token.token, title: 'test test', body: 'test test' }
-        expect(JSON.parse(response.body)['title']).to eq('test test')
-        expect(JSON.parse(response.body)['body']).to eq('test test')
-        expect(JSON.parse(response.body)['user_id']).to eq(resource_owner.id)
+        expect(JSON.parse(response.body)['title']).to(eq('test test'))
+        expect(JSON.parse(response.body)['body']).to(eq('test test'))
+        expect(JSON.parse(response.body)['user_id']).to(eq(resource_owner.id))
       end
     end
 
@@ -84,7 +84,8 @@ describe 'Questions API', type: :request do
 
       it 'should return question errors' do
         post '/api/v1/questions', params: { access_token: access_token.token, title: 'test', body: 'test' }
-        expect(JSON.parse(response.body)).to eq({"errors"=>{"body"=>["is too short (minimum is 5 characters)"], "title"=>["is too short (minimum is 5 characters)"]}})
+        expect(JSON.parse(response.body)).to(eq({ 'errors' => { 'body' => ['is too short (minimum is 5 characters)'],
+                                                                'title' => ['is too short (minimum is 5 characters)'] } }))
       end
     end
 
@@ -101,7 +102,7 @@ describe 'Questions API', type: :request do
     end
   end
 
-  describe "DELETE api/v1/questions/[:id]" do
+  describe 'DELETE api/v1/questions/[:id]' do
     let(:question_1)  { create(:question) }
     let(:question_2)  { create(:question) }
     let(:access_token) { create(:access_token, resource_owner_id: question_1.user_id) }
@@ -109,27 +110,27 @@ describe 'Questions API', type: :request do
     context 'authorized with valid params' do
       it 'should delete the question' do
         delete "/api/v1/questions/#{question_1.id}", params: { access_token: access_token.token }
-        expect(Question.all).to eq ([question_2])
-        expect(response.status).to eq(200)
+        expect(Question.all).to(eq([question_2]))
+        expect(response.status).to(eq(200))
       end
     end
 
     context 'authorized with invalid params' do
       it 'should return 404:not fund error' do
-        delete "/api/v1/questions/#{question_1.id+10}", params: { access_token: access_token.token }
-        expect(response.status).to eq(404)
+        delete "/api/v1/questions/#{question_1.id + 10}", params: { access_token: access_token.token }
+        expect(response.status).to(eq(404))
       end
     end
 
     context 'unauthorized' do
       it 'should not delete the question' do
         delete "/api/v1/questions/#{question_1.id}"
-        expect(response.status).to eq(401)
+        expect(response.status).to(eq(401))
       end
     end
   end
 
-  describe "PATH api/v1/questions/[:id]" do
+  describe 'PATH api/v1/questions/[:id]' do
     let(:question)  { create(:question) }
     let(:old_title) { question.title }
     let(:old_body)  { question.body }
@@ -138,24 +139,25 @@ describe 'Questions API', type: :request do
     context 'authorized with valid params' do
       it 'should update the question' do
         patch "/api/v1/questions/#{question.id}", params: { access_token: access_token.token, title: 'update', body: 'update' }
-        expect(JSON.parse(response.body)['title']).to eq('update')
-        expect(JSON.parse(response.body)['body']).to eq('update')
+        expect(JSON.parse(response.body)['title']).to(eq('update'))
+        expect(JSON.parse(response.body)['body']).to(eq('update'))
       end
     end
 
     context 'authorized with invalid params' do
       it 'should not update the question' do
         patch "/api/v1/questions/#{question.id}", params: { access_token: access_token.token, title: 'upd', body: 'upd' }
-        expect(JSON.parse(response.body)).to eq({"errors"=>{"body"=>["is too short (minimum is 5 characters)"], "title"=>["is too short (minimum is 5 characters)"]}})
-        expect(Question.find(question.id).title).to eq(old_title)
-        expect(Question.find(question.id).body).to eq(old_body)
+        expect(JSON.parse(response.body)).to(eq({ 'errors' => { 'body' => ['is too short (minimum is 5 characters)'],
+                                                                'title' => ['is too short (minimum is 5 characters)'] } }))
+        expect(Question.find(question.id).title).to(eq(old_title))
+        expect(Question.find(question.id).body).to(eq(old_body))
       end
     end
 
     context 'unauthorized' do
       it 'should not update the question' do
         patch "/api/v1/questions/#{question.id}"
-        expect(response.status).to eq(401)
+        expect(response.status).to(eq(401))
       end
     end
   end
