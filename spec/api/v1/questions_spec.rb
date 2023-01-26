@@ -6,13 +6,6 @@ describe 'Questions API', type: :request do
       "ACCEPT": 'application/json' }
     end
 
-  let(:question_headers) do
-    { "CONTENT_TYPE": 'application/json',
-      "ACCEPT": 'application/json',
-      "title": 'test test',
-      "body": 'test test' }
-    end
-
   describe 'GET /api/v1/questions' do
     context 'unauthorized' do
       it 'returns 401 status if there is no access_token' do
@@ -104,6 +97,34 @@ describe 'Questions API', type: :request do
       it 'returns 401 status if access_token is invalid' do
         post '/api/v1/questions', params: { access_token: '123', title: 'test test', body: 'test test' }
         expect(response.status).to(eq(401))
+      end
+    end
+  end
+
+  describe "DELETE api/v1/questions/[:id]" do
+    let!(:question_1)  { create(:question) }
+    let!(:question_2)  { create(:question) }
+    let!(:access_token) { create(:access_token, resource_owner_id: question_1.user_id) }
+    
+    context 'authorized with valid params' do
+      it 'should delete the question' do
+        delete "/api/v1/questions/#{question_1.id}", params: { access_token: access_token.token }
+        expect(Question.all).to eq ([question_2])
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context 'authorized with invalid params' do
+      it 'should delete the question' do
+        delete "/api/v1/questions/#{question_1.id+10}", params: { access_token: access_token.token }
+        expect(response.status).to eq(404)
+      end
+    end
+
+    context 'unauthorized' do
+      it 'should delete the question' do
+        delete "/api/v1/questions/#{question_1.id}"
+        expect(response.status).to eq(401)
       end
     end
   end

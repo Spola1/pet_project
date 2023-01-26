@@ -1,4 +1,6 @@
 class Api::V1::QuestionsController < Api::V1::ApplicationController
+  before_action :set_question, only: [:destroy]
+
   def show
     question = Question.find(params[:id])
 
@@ -21,9 +23,19 @@ class Api::V1::QuestionsController < Api::V1::ApplicationController
     end
   end
 
+  def destroy
+    questions = Question.all
+    @question.destroy
+    render json: questions
+  end 
+
   private
 
   def question_params
     params.permit(:title, :body)
+  end
+
+  def set_question
+    @question = Question.find(params[:id])
   end
 end
