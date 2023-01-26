@@ -1,5 +1,5 @@
 class Api::V1::QuestionsController < Api::V1::ApplicationController
-  before_action :set_question, only: [:destroy]
+  before_action :set_question, only: [:destroy, :update]
 
   def show
     question = Question.find(params[:id])
@@ -27,7 +27,15 @@ class Api::V1::QuestionsController < Api::V1::ApplicationController
     questions = Question.all
     @question.destroy
     render json: questions
-  end 
+  end
+
+  def update
+    if @question.update(question_params)
+      render json: @question
+    else
+      render json: { errors: @question.errors }
+    end
+  end
 
   private
 

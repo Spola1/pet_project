@@ -82,19 +82,19 @@ describe 'Questions API', type: :request do
       let(:resource_owner) { create(:user) }
       let(:access_token) { create(:access_token, resource_owner_id: resource_owner.id) }
 
-      it 'returns all public fields' do
+      it 'should return question errors' do
         post '/api/v1/questions', params: { access_token: access_token.token, title: 'test', body: 'test' }
         expect(JSON.parse(response.body)).to eq({"errors"=>{"body"=>["is too short (minimum is 5 characters)"], "title"=>["is too short (minimum is 5 characters)"]}})
       end
     end
 
     context 'unauthorized' do
-      it 'returns 401 status if there is no access_token' do
+      it 'should return 401 status if there is no access_token' do
         post '/api/v1/questions', params: { title: 'test test', body: 'test test' }
         expect(response.status).to(eq(401))
       end
 
-      it 'returns 401 status if access_token is invalid' do
+      it 'should return 401 status if access_token is invalid' do
         post '/api/v1/questions', params: { access_token: '123', title: 'test test', body: 'test test' }
         expect(response.status).to(eq(401))
       end
@@ -102,10 +102,10 @@ describe 'Questions API', type: :request do
   end
 
   describe "DELETE api/v1/questions/[:id]" do
-    let!(:question_1)  { create(:question) }
-    let!(:question_2)  { create(:question) }
-    let!(:access_token) { create(:access_token, resource_owner_id: question_1.user_id) }
-    
+    let(:question_1)  { create(:question) }
+    let(:question_2)  { create(:question) }
+    let(:access_token) { create(:access_token, resource_owner_id: question_1.user_id) }
+
     context 'authorized with valid params' do
       it 'should delete the question' do
         delete "/api/v1/questions/#{question_1.id}", params: { access_token: access_token.token }
@@ -115,15 +115,46 @@ describe 'Questions API', type: :request do
     end
 
     context 'authorized with invalid params' do
-      it 'should delete the question' do
+      it 'should return 404:not fund error' do
         delete "/api/v1/questions/#{question_1.id+10}", params: { access_token: access_token.token }
         expect(response.status).to eq(404)
       end
     end
 
     context 'unauthorized' do
-      it 'should delete the question' do
+      it 'should not delete the question' do
         delete "/api/v1/questions/#{question_1.id}"
+        expect(response.status).to eq(401)
+      end
+    end
+  end
+
+  describe "PATH api/v1/questions/[:id]" do
+    let(:question)  { create(:question) }
+    let(:old_title) { question.title }
+    let(:old_body)  { question.body }
+    let(:access_token) { create(:access_token, resource_owner_id: question.user_id) }
+
+    context 'authorized with valid params' do
+      it 'should update the question' do
+        patch "/api/v1/questions/#{question.id}", params: { access_token: access_token.token, title: 'update', body: 'update' }
+        expect(JSON.parse(response.body)['title']).to eq('update')
+        expect(JSON.parse(response.body)['body']).to eq('update')
+      end
+    end
+
+    context 'authorized with invalid params' do
+      it 'should not update the question' do
+        patch "/api/v1/questions/#{question.id}", params: { access_token: access_token.token, title: 'upd', body: 'upd' }
+        expect(JSON.parse(response.body)).to eq({"errors"=>{"body"=>["is too short (minimum is 5 characters)"], "title"=>["is too short (minimum is 5 characters)"]}})
+        expect(Question.find(question.id).title).to eq(old_title)
+        expect(Question.find(question.id).body).to eq(old_body)
+      end
+    end
+
+    context 'unauthorized' do
+      it 'should not update the question' do
+        patch "/api/v1/questions/#{question.id}"
         expect(response.status).to eq(401)
       end
     end
