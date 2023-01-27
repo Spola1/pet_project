@@ -34,4 +34,8 @@ class Question < ApplicationRecord
   def created_at_format
     created_at.strftime('%Y-%m-%d %H:%M:%S')
   end
+
+  def self.search_by_title(title)
+    where('title LIKE ?', "#{title}")
+  end
 end

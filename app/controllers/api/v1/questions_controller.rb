@@ -13,6 +13,15 @@ class Api::V1::QuestionsController < Api::V1::ApplicationController
     render(json: questions)
   end
 
+  def by_title
+    question = Question.search_by_title(params[:title])
+    if question.present?
+      render(json: question)
+    else
+      render(json: { error: 'not found' }, status: :not_found)
+    end
+  end
+
   def create
     question = current_resource_owner.questions.build(question_params)
 

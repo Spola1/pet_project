@@ -54,7 +54,9 @@ Rails.application.routes.draw do
       resources :users do
         get :me, on: :collection
       end
-      resources :questions
+      resources :questions do
+        get :by_title, on: :collection
+      end
     end
   end
 
