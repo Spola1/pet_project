@@ -142,6 +142,10 @@ GEM
     globalid (1.0.0)
       activesupport (>= 5.0)
     gravtastic (3.2.6)
+    hotwire-rails (0.1.3)
+      rails (>= 6.0.0)
+      stimulus-rails
+      turbo-rails
     htmlentities (4.3.4)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
@@ -336,9 +340,15 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     ssrf_filter (1.1.1)
+    stimulus-rails (1.2.1)
+      railties (>= 6.0.0)
     strscan (3.0.4)
     thor (1.2.1)
     timeout (0.3.0)
+    turbo-rails (1.3.2)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -383,6 +393,7 @@ DEPENDENCIES
   faker (~> 2)
   font-awesome-rails
   gravtastic
+  hotwire-rails
   httparty
   jbuilder (~> 2.7)
   jsbundling-rails
@@ -408,6 +419,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   sprockets-rails
+  turbo-rails
   turbolinks (~> 5)
   tzinfo-data
   valid_email2

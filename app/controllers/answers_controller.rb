@@ -15,6 +15,7 @@ class AnswersController < ApplicationController
       notify_question_author(@question, @answer)
       flash[:success] = 'Answer created!'
       redirect_to(question_path(@question))
+      @answer.broadcast_append_to :answers
     else
       load_question_answers(do_render: true)
     end

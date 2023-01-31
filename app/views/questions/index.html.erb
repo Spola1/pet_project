@@ -1,3 +1,5 @@
+<%= turbo_stream_from :questions %>
+
 <% provide :page_title, 'Questions' %>
 <% currently_at 'Questions' %>
 
@@ -15,7 +17,11 @@
   <%= pagination @pagy %>
 </div>
 
-  <%= render @questions %>
+<%= turbo_frame_tag :questions do %>
+  <div class="flex flex-col" >
+    <%= render @questions %>
+  </div>
+<% end %>
 
 <div class="mt-3 pb-2">
   <%= pagination @pagy %>

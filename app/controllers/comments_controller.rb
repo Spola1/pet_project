@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
       notify_commentable_author(@commentable, @comment)
       flash[:success] = 'Comment created!'
       redirect_to(question_path(@question))
+      @comment.broadcast_append_to :comments
     else
       @comment = @comment.decorate
       load_question_answers(do_render: true)

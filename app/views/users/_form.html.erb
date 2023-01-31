@@ -64,7 +64,7 @@
   <% end %>
 
   <%= f.submit (@user.new_record? ? "Register!" : "Save"),
-    class: 'btn btn-primary btn-lg' %>
+    class: 'btn btn-primary btn-lg',  data: { turbo: false } %>
 
   <%= link_to "Back", :back, class: 'btn btn-warning' %>
 <% end %>

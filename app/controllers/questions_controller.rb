@@ -43,6 +43,7 @@ class QuestionsController < ApplicationController
     if @question.save
       flash[:success] = 'Question created!'
       redirect_to(question_path(@question))
+      @question.broadcast_append_to :questions
     else
       render(:new)
     end

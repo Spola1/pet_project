@@ -1,3 +1,6 @@
+<%= turbo_stream_from :comments %>
+<%= turbo_stream_from :answers %>
+
 <% provide :page_title, "Question #{@question.id}" %>
 <% currently_at 'Questions' %>
 
@@ -7,21 +10,24 @@
 
 <% if @question.comments.size > 0 || current_user.present? %>
   <h3 class="mt-3">Question comments</h3>
-
-  <%= render 'comments/commentable', commentable: @question, comment: @comment %>
+  <%= turbo_frame_tag :comments do %>
+    <%= render 'comments/commentable', commentable: @question, comment: @comment %>
+  <% end %>
 <% end %>
 
 <% if @question.comments.size > 0 || current_user.present? %>
   <h3 class="mt-3">Answers</h3>
 
-  <%= render 'answers/form' %>
+    <%= render 'answers/form' %>
 
   <div class="mt-3">
     <%= pagination @pagy %>
   </div>
 
+  <%= turbo_frame_tag :answers do %>
     <%= render @answers.sort_by { |answer| answer.cached_votes_score }.reverse %>
-
+  <% end %>
+  
   <div class="mt-3">
     <%= pagination @pagy %>
   </div>
