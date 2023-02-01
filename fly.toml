@@ -1,6 +1,6 @@
-# fly.toml file generated for pet-project on 2023-01-17T12:05:52+03:00
+# fly.toml file generated for pet-rails on 2023-02-01T17:43:27+03:00
 
-app = "pet-project"
+app = "pet-rails"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
@@ -14,14 +14,14 @@ processes = []
   release_command = "bin/rails fly:release"
 
 [env]
-  PORT = "8080"
+  PORT = "3000"
 
 [experimental]
   auto_rollback = true
 
 [[services]]
   http_checks = []
-  internal_port = 8080
+  internal_port = 3000
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
