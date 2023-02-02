@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    record == user
+    record == user || user.admin_role?
   end
 
   def index?

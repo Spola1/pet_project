@@ -46,6 +46,17 @@ class QuestionsController < ApplicationController
     else
       render(:new)
     end
+
+    #respond_to do |format|
+      #if @question.save
+        #format.html { redirect_to question_path(@question), flash: { success: "Question created!" } }
+        #format.json { render :show, status: :created, location: @question }
+      #else
+        #format.turbo_stream { render turbo_stream: turbo_stream.replace(@question, partial: 'questions/form', locals: { question: @question }) }
+        #format.html { render :new, status: :unprocessable_entity }
+        #format.json { render json: @questions.errors, status: :unprocessable_entity }
+      #end
+    #end
   end
 
   def upvote

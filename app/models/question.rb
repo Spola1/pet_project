@@ -12,6 +12,8 @@ class Question < ApplicationRecord
   validates :title, presence: true, length: { minimum: 5 }
   validates :body, presence: true, length: { minimum: 5 }
 
+  #after_create_commit { broadcast_prepend_to :questions }
+
   after_create do
     question = Question.find_by(id: id)
     tags = body.scan(/#\w+/)

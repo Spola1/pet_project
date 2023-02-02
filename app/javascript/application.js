@@ -7,3 +7,5 @@ import 'bootstrap/js/dist/dropdown'
 
 Rails.start()
 Turbolinks.start()
+import "./controllers"
+import "@hotwired/turbo-rails"
